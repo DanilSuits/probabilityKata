@@ -44,7 +44,7 @@ public class Tests {
 
     @Test(dataProvider = "examples")
     public <V extends Value<V>> void checkValueContract(V start) {
-        checkEquals(start, start);
+        Assert.assertTrue(start.sameValueAs(start));
     }
 
     @Test(dataProvider = "examples")
