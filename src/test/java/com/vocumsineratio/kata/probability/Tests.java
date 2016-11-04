@@ -98,6 +98,7 @@ public class Tests {
         }
 
         public boolean sameValueAs(TestDouble other) {
+            if (null == other) return false;
             return this.v == other.v;
         }
     }
