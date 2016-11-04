@@ -5,6 +5,10 @@
  */
 package com.vocumsineratio.kata.probability;
 
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
 /**
  * @author Danil Suits (danil@vast.com)
  */
@@ -32,5 +36,15 @@ public class Tests {
         Probability<P> inverseOf();
         Probability<P> either(Probability<P> other);
         Probability<P> combinedWith(Probability<P> other);
+    }
+
+    @Test(dataProvider = "examples")
+    public <P extends Probability<P>> void checkInverse(Probability<P> start) {
+        Assert.assertEquals(start.inverseOf().inverseOf(), start);
+    }
+
+    @DataProvider(name = "examples")
+    public Object[][] createTestDoubles () {
+        return new Object[][]{{null}};
     }
 }
