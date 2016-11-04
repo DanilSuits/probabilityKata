@@ -49,7 +49,7 @@ public class Tests {
         checkEquals(other.inverseOf(), start);
     }
 
-    @Test(dataProvider = "examples")
+    @Test(dataProvider = "examples", enabled = false)
     public <P extends Probability<P>> void checkCombine(Probability<P> start) {
         final Probability<P> other = start.inverseOf();
         checkEquals(other.combinedWith(start), start.combinedWith(other));
