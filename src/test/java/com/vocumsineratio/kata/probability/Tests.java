@@ -45,6 +45,21 @@ public class Tests {
 
     @DataProvider(name = "examples")
     public Object[][] createTestDoubles () {
-        return new Object[][]{{null}};
+        return new Object[][]{{ new TestDouble() }};
+    }
+
+    static class TestDouble implements Probability<TestDouble> {
+
+        public Probability<TestDouble> inverseOf() {
+            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        public Probability<TestDouble> either(Probability<TestDouble> other) {
+            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        public Probability<TestDouble> combinedWith(Probability<TestDouble> other) {
+            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+        }
     }
 }
