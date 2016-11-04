@@ -33,29 +33,29 @@ public class Tests {
     */
 
     interface Probability<P extends Probability<P>> {
-        Probability<P> inverseOf();
-        Probability<P> either(Probability<P> other);
-        Probability<P> combinedWith(Probability<P> other);
+        P inverseOf();
+        P either(P other);
+        P combinedWith(P other);
     }
 
     @Test(dataProvider = "examples")
-    public <P extends Probability<P>> void checkIdentity(Probability<P> start) {
+    public <P extends Probability<P>> void checkIdentity(P start) {
         checkEquals(start, start);
     }
 
     @Test(dataProvider = "examples")
-    public <P extends Probability<P>> void checkInverse(Probability<P> start) {
+    public <P extends Probability<P>> void checkInverse(P start) {
         final Probability<P> other = start.inverseOf();
         checkEquals(other.inverseOf(), start);
     }
 
     @Test(dataProvider = "examples", enabled = false)
-    public <P extends Probability<P>> void checkCombine(Probability<P> start) {
-        final Probability<P> other = start.inverseOf();
+    public <P extends Probability<P>> void checkCombine(P start) {
+        final P other = start.inverseOf();
         checkEquals(other.combinedWith(start), start.combinedWith(other));
     }
 
-    private <P extends Probability<P>> void checkEquals(Probability<P> actual, Probability<P> expected) {
+    private <P extends Probability<P>> void checkEquals(P actual, P expected) {
         Assert.assertNotNull(expected);
         Assert.assertNotNull(actual);
         Assert.assertEquals(actual, expected);
@@ -75,15 +75,15 @@ public class Tests {
             this.v = v;
         }
 
-        public Probability<TestDouble> inverseOf() {
+        public TestDouble inverseOf() {
             return new TestDouble(1 - this.v);
         }
 
-        public Probability<TestDouble> either(Probability<TestDouble> other) {
+        public TestDouble either(TestDouble other) {
             return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
         }
 
-        public Probability<TestDouble> combinedWith(Probability<TestDouble> other) {
+        public TestDouble combinedWith(TestDouble other) {
             return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
         }
 
