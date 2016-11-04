@@ -45,13 +45,19 @@ public class Tests {
 
     @DataProvider(name = "examples")
     public Object[][] createTestDoubles () {
-        return new Object[][]{{ new TestDouble() }};
+        return new Object[][]{{ new TestDouble(.6) }};
     }
 
     static class TestDouble implements Probability<TestDouble> {
+        // The internal state should be held as a decimal
+        private final double v;
+
+        TestDouble(double v) {
+            this.v = v;
+        }
 
         public Probability<TestDouble> inverseOf() {
-            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+            return new TestDouble(1 - this.v);
         }
 
         public Probability<TestDouble> either(Probability<TestDouble> other) {
