@@ -41,9 +41,7 @@ public class Tests {
     @Test(dataProvider = "examples")
     public <P extends Probability<P>> void checkInverse(Probability<P> start) {
         final Probability<P> other = start.inverseOf();
-        final Probability<P> actual = other.inverseOf();
-        final Probability<P> expected = start;
-        checkEquals(actual, expected);
+        checkEquals(other.inverseOf(), start);
     }
 
     private <P extends Probability<P>> void checkEquals(Probability<P> actual, Probability<P> expected) {
