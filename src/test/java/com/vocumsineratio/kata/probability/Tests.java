@@ -27,4 +27,10 @@ public class Tests {
         One last thing. You can't put any getters on the object.  What's the first test to write?
 
     */
+
+    interface Probability<P extends Probability<P>> {
+        Probability<P> inverseOf();
+        Probability<P> either(Probability<P> other);
+        Probability<P> combinedWith(Probability<P> other);
+    }
 }
