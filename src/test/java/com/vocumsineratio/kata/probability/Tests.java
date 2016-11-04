@@ -39,6 +39,11 @@ public class Tests {
     }
 
     @Test(dataProvider = "examples")
+    public <P extends Probability<P>> void checkIdentity(Probability<P> start) {
+        checkEquals(start, start);
+    }
+
+    @Test(dataProvider = "examples")
     public <P extends Probability<P>> void checkInverse(Probability<P> start) {
         final Probability<P> other = start.inverseOf();
         checkEquals(other.inverseOf(), start);
