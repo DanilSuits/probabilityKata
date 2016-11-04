@@ -49,7 +49,15 @@ public class Tests {
         checkEquals(other.inverseOf(), start);
     }
 
+    @Test(dataProvider = "examples")
+    public <P extends Probability<P>> void checkCombine(Probability<P> start) {
+        final Probability<P> other = start.inverseOf();
+        checkEquals(other.combinedWith(start), start.combinedWith(other));
+    }
+
     private <P extends Probability<P>> void checkEquals(Probability<P> actual, Probability<P> expected) {
+        Assert.assertNotNull(expected);
+        Assert.assertNotNull(actual);
         Assert.assertEquals(actual, expected);
     }
 
