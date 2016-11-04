@@ -40,8 +40,12 @@ public class Tests {
 
     @Test(dataProvider = "examples")
     public <P extends Probability<P>> void checkInverse(Probability<P> start) {
-        Assert.assertEquals(start.inverseOf().inverseOf(), start);
+        final Probability<P> other = start.inverseOf();
+        final Probability<P> actual = other.inverseOf();
+        final Probability<P> expected = start;
+        Assert.assertEquals(actual, expected);
     }
+
 
     @DataProvider(name = "examples")
     public Object[][] createTestDoubles () {
