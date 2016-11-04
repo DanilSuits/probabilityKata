@@ -91,16 +91,6 @@ public class Tests {
             return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
         }
 
-        @Override
-        public boolean equals(Object obj) {
-            if (this == obj) return true;
-
-            TestDouble rhs = TestDouble.class.cast(obj);
-            if (null == rhs) return false;
-
-            return this.v == rhs.v;
-        }
-
         public boolean sameValueAs(TestDouble other) {
             return this.v == other.v;
         }
