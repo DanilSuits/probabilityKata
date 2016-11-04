@@ -43,6 +43,11 @@ public class Tests {
     }
 
     @Test(dataProvider = "examples")
+    public <P extends Probability<P>> void checkValueContract(P start) {
+        checkEquals(start, start);
+    }
+
+    @Test(dataProvider = "examples")
     public <P extends Probability<P>> void checkIdentity(P start) {
         checkEquals(start, start);
     }
