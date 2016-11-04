@@ -32,7 +32,11 @@ public class Tests {
 
     */
 
-    interface Probability<P extends Probability<P>> {
+    interface Value<V extends Value<V>> {
+        boolean sameValueAs(V other);
+    }
+
+    interface Probability<P extends Probability<P>> extends Value<P> {
         P inverseOf();
         P either(P other);
         P combinedWith(P other);
@@ -58,7 +62,7 @@ public class Tests {
     private <P extends Probability<P>> void checkEquals(P actual, P expected) {
         Assert.assertNotNull(expected);
         Assert.assertNotNull(actual);
-        Assert.assertEquals(actual, expected);
+        Assert.assertTrue(actual.sameValueAs(expected));
     }
 
 
@@ -95,6 +99,10 @@ public class Tests {
             if (null == rhs) return false;
 
             return this.v == rhs.v;
+        }
+
+        public boolean sameValueAs(TestDouble other) {
+            return this.v == other.v;
         }
     }
 }
