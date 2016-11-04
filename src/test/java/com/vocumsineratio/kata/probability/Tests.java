@@ -54,7 +54,7 @@ public class Tests {
         return new Object[][]{{ new TestDouble(.6) }};
     }
 
-    static class TestDouble implements Probability<TestDouble> {
+    final static class TestDouble implements Probability<TestDouble> {
         // The internal state should be held as a decimal
         private final double v;
 
@@ -77,8 +77,10 @@ public class Tests {
         @Override
         public boolean equals(Object obj) {
             if (this == obj) return true;
+
             TestDouble rhs = TestDouble.class.cast(obj);
             if (null == rhs) return false;
+
             return this.v == rhs.v;
         }
     }
