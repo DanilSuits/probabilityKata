@@ -5,6 +5,7 @@
  */
 package com.vocumsineratio.kata.probability;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -36,6 +37,12 @@ public class TestSpikeTwo {
         Probability q = p.inverseOf();
         Probability r = p.either(q);
         Probability s = p.combinedWith(q);
+    }
+
+    @Test
+    public void checkThatNegationIfNegationIsIdentity () {
+        Probability p = new Probability();
+        Assert.assertEquals(p.inverseOf().inverseOf(), p);
     }
 
     static class Probability {
