@@ -72,11 +72,13 @@ public class Tests {
         checkValueNotSameAsNull(initialSeed.either(initialSeed));
 
         P a = initialSeed;
-        P and = a.combinedWith(a);
+        P b = initialSeed;
+        P and = a.combinedWith(b);
         P notAndSide = and.inverseOf();
 
-        P notA = initialSeed.inverseOf();
-        P orSide = notA.either(notA);
+        P notA = a.inverseOf();
+        P notB = b.inverseOf();
+        P orSide = notA.either(notB);
 
         checkSameValueAs(notAndSide, orSide);
     }
