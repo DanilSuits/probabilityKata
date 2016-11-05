@@ -98,6 +98,7 @@ public class Tests {
         List<Object []> derivedTests = Lists.newArrayList();
         for(Probability current : samples) {
             derivedTests.add(new Object[] {current});
+            derivedTests.add(new Object[] {current.inverseOf()});
         }
 
         return derivedTests.iterator();
