@@ -43,6 +43,12 @@ public class TestSpikeTwo {
     public void checkThatNegationIfNegationIsIdentity () {
         Probability p = new Probability();
         Assert.assertEquals(p.inverseOf().inverseOf(), p);
+
+        Probability q = new Probability();
+        Assert.assertEquals(q.inverseOf().inverseOf(), q);
+
+        Probability r = p.either(q);
+        Assert.assertEquals(r.inverseOf().inverseOf(), r);
     }
 
     static class Probability {
