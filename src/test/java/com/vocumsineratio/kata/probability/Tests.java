@@ -289,7 +289,10 @@ public class Tests {
         }
     }
 
-    final static class DoubleProbability implements Probability<DoubleProbability> {
+    abstract static class DeMorganProbability<P extends DeMorganProbability<P>> implements Probability<P> {
+    }
+
+    final static class DoubleProbability extends DeMorganProbability<DoubleProbability> {
         // The internal state should be held as a decimal
         private final double v;
 
