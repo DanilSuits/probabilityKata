@@ -84,6 +84,11 @@ public class TestSpikeTwo {
         }
     }
 
+    @Test(dataProvider = "binaryProvider")
+    public void checkThatProbabilitiesRespectSymmetry(Probability p, Probability q) {
+        Assert.assertEquals(p.combinedWith(q), q.combinedWith(p));
+    }
+
     @DataProvider
     public Iterator<Object[]> unaryProvider() {
         List<Object[]> trials = Arrays.<Object[]>asList(new Object[]{new Probability()});
