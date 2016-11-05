@@ -142,14 +142,32 @@ public class Tests {
             return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
         }
 
-        public boolean sameValueAs(TestDouble other) {
-            if (null == other) return false;
+        public boolean sameValueAs(TestDouble that) {
+            if (null == that) return false;
 
-            final double TOLERANCE = .00001;
-            if ((this.v - other.v) < TOLERANCE) return true;
-            if ((other.v - this.v) < TOLERANCE) return true;
+            return Comparison.closeEnough(this, that);
+        }
 
-            return this.v == other.v;
+        private static class Comparison {
+            // Positive values only please.
+            // This choice is an arbitrary one.
+            static final double TOLERANCE = .00001;
+
+            static boolean closeEnough(TestDouble lhs, TestDouble rhs) {
+                return closeEnough (lhs.v, rhs.v);
+            }
+
+            static boolean closeEnough(double lhs, double rhs) {
+                double error = lhs - rhs;
+
+                // If lhs != rhs, then one of these will be negative
+                // and the other positive branch will be big or small.
+                return isNegligible(error) && isNegligible(- error);
+            }
+
+            static boolean isNegligible(double error) {
+                return error < TOLERANCE;
+            }
         }
 
         @Override
