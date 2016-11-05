@@ -61,6 +61,7 @@ public class Tests {
     public <P extends Probability<P>> void checkInverse(P start) {
         final Probability<P> other = start.inverseOf();
         checkSameValueAs(other.inverseOf(), start);
+        checkSameValueAs(start.inverseOf(), other);
     }
 
     @Test(dataProvider = "oneArg")
