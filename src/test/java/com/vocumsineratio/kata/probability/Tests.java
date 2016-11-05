@@ -89,7 +89,7 @@ public class Tests {
         checkSameValueAs(a.combinedWith(bc), ab.combinedWith(c));
     }
 
-    @DataProvider(name = "oneArg")
+    @DataProvider(name = "unaryProbabilityProvider")
     public Iterator<Object []> unaryProbabilityProvider() {
         List<Probability> samples = Lists.<Probability>newArrayList
                 ( TestDouble.from(.6)
