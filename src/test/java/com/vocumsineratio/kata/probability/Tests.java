@@ -36,12 +36,12 @@ public class Tests {
         boolean sameValueAs(V other);
     }
 
-    @Test(dataProvider = "oneArg")
+    @Test(dataProvider = "unaryProbabilityProvider")
     public <V extends Value<V>> void checkValueNotNull(V initialSeed) {
         Assert.assertFalse(initialSeed.sameValueAs(null));
     }
 
-    @Test(dataProvider = "oneArg")
+    @Test(dataProvider = "unaryProbabilityProvider")
     public <V extends Value<V>> void checkValueIdentity(V initialSeed) {
         checkSameValueAs(initialSeed, initialSeed);
     }
@@ -57,21 +57,21 @@ public class Tests {
         P combinedWith(P other);
     }
 
-    @Test(dataProvider = "oneArg")
+    @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkInverse(P initialSeed) {
         checkSameValueAs(initialSeed.inverseOf().inverseOf(), initialSeed);
         final P other = initialSeed.inverseOf();
         checkSameValueAs(other.inverseOf().inverseOf(), other);
     }
 
-    @Test(dataProvider = "oneArg")
+    @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkCombine(P initialSeed) {
         final P other = initialSeed.inverseOf();
         checkSameValueAs(other.combinedWith(initialSeed), initialSeed.combinedWith(other));
     }
 
     @DataProvider(name = "oneArg")
-    public Object[][] createTestDoubles () {
+    public Object[][] unaryProbabilityProvider() {
         return new Object[][]{{ TestDouble.from(.6) }};
     }
 
