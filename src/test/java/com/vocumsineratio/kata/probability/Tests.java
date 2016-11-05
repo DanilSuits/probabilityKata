@@ -71,7 +71,7 @@ public class Tests {
 
     @DataProvider(name = "oneArg")
     public Object[][] createTestDoubles () {
-        return new Object[][]{{ new TestDouble(.6) }};
+        return new Object[][]{{ TestDouble.from(.6) }};
     }
 
     final static class TestDouble implements Probability<TestDouble> {
@@ -83,20 +83,24 @@ public class Tests {
         }
 
         public TestDouble inverseOf() {
-            return new TestDouble(1 - this.v);
+            return TestDouble.from(1 - this.v);
+        }
+
+        public TestDouble combinedWith(TestDouble other) {
+            return TestDouble.from(this.v * other.v);
         }
 
         public TestDouble either(TestDouble other) {
             return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
         }
 
-        public TestDouble combinedWith(TestDouble other) {
-            return new TestDouble(this.v * other.v);
-        }
-
         public boolean sameValueAs(TestDouble other) {
             if (null == other) return false;
             return this.v == other.v;
+        }
+
+        public static TestDouble from(double v) {
+            return new TestDouble(v);
         }
     }
 }
