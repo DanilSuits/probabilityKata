@@ -36,44 +36,40 @@ public class Tests {
         boolean sameValueAs(V other);
     }
 
+    @Test(dataProvider = "oneArg")
+    public <V extends Value<V>> void checkValueNotNull(V start) {
+        Assert.assertFalse(start.sameValueAs(null));
+    }
+
+    @Test(dataProvider = "oneArg")
+    public <V extends Value<V>> void checkValueIdentity(V start) {
+        checkSameValueAs(start, start);
+    }
+
+    private <V extends Value<V>> void checkSameValueAs(V actual, V expected) {
+        Assert.assertTrue(actual.sameValueAs(expected));
+        Assert.assertTrue(expected.sameValueAs(actual));
+    }
+
     interface Probability<P extends Probability<P>> extends Value<P> {
         P inverseOf();
         P either(P other);
         P combinedWith(P other);
     }
 
-    @Test(dataProvider = "examples")
-    public <V extends Value<V>> void checkValueContract(V start) {
-        Assert.assertTrue(start.sameValueAs(start));
-        Assert.assertFalse(start.sameValueAs(null));
-    }
-
-    @Test(dataProvider = "examples")
-    public <P extends Probability<P>> void checkIdentity(P start) {
-        checkEquals(start, start);
-    }
-
-    @Test(dataProvider = "examples")
+    @Test(dataProvider = "oneArg")
     public <P extends Probability<P>> void checkInverse(P start) {
         final Probability<P> other = start.inverseOf();
-        checkEquals(other.inverseOf(), start);
+        checkSameValueAs(other.inverseOf(), start);
     }
 
-    @Test(dataProvider = "examples", enabled = false)
+    @Test(dataProvider = "oneArg", enabled = false)
     public <P extends Probability<P>> void checkCombine(P start) {
         final P other = start.inverseOf();
-        checkEquals(other.combinedWith(start), start.combinedWith(other));
+        checkSameValueAs(other.combinedWith(start), start.combinedWith(other));
     }
 
-    private <P extends Probability<P>> void checkEquals(P actual, P expected) {
-        Assert.assertNotNull(expected);
-        Assert.assertNotNull(actual);
-        Assert.assertTrue(actual.sameValueAs(expected));
-        Assert.assertTrue(expected.sameValueAs(actual));
-    }
-
-
-    @DataProvider(name = "examples")
+    @DataProvider(name = "oneArg")
     public Object[][] createTestDoubles () {
         return new Object[][]{{ new TestDouble(.6) }};
     }
