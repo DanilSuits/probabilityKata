@@ -77,7 +77,9 @@ public class Tests {
         checkCombineIsAssociative(initialSeed, initialSeed, initialSeed);
 
         final P other = initialSeed.inverseOf();
-        // checkCombineIsAssociative(initialSeed, initialSeed, other);
+        checkCombineIsAssociative(other, initialSeed, initialSeed);
+        checkCombineIsAssociative(initialSeed, other, initialSeed);
+        checkCombineIsAssociative(initialSeed, initialSeed, other);
 
     }
 
