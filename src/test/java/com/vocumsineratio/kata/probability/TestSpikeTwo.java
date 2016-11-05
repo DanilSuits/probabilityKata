@@ -114,5 +114,10 @@ public class TestSpikeTwo {
         public Probability combinedWith(Probability q) {
             return this;
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            return true;
+        }
     }
 }
