@@ -34,4 +34,8 @@ public class TestSpikeTwo {
     public void checkThatProbabilityImplementsNegation () {
         Probability p;
     }
+
+    static class Probability {
+
+    }
 }
