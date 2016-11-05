@@ -53,8 +53,8 @@ public class Tests {
 
     interface Probability<P extends Probability<P>> extends Value<P> {
         P inverseOf();
-        P either(P other);
         P combinedWith(P other);
+        P either(P other);
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
