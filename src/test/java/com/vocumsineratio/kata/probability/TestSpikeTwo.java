@@ -5,6 +5,8 @@
  */
 package com.vocumsineratio.kata.probability;
 
+import org.testng.annotations.Test;
+
 /**
  * @author Danil Suits (danil@vast.com)
  */
@@ -27,4 +29,9 @@ public class TestSpikeTwo {
         One last thing. You can't put any getters on the object.  What's the first test to write?
 
     */
+
+    @Test
+    public void checkThatProbabilityImplementsNegation () {
+        Probability p;
+    }
 }
