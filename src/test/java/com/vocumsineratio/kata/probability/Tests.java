@@ -163,9 +163,8 @@ public class Tests {
             return TestDouble.from(this.v * other.v);
         }
 
-        public TestDouble either(TestDouble other) {
-            // TODO: deliberate bug
-            return this;
+        public TestDouble either(TestDouble that) {
+            return TestDouble.from(this.v + that.v - (this.v * that.v));
         }
 
         public boolean sameValueAs(TestDouble that) {
