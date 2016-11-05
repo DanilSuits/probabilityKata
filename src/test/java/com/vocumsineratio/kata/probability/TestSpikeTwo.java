@@ -48,6 +48,12 @@ public class TestSpikeTwo {
         Assert.assertEquals(p.inverseOf().inverseOf(), p);
     }
 
+    @Test(dataProvider = "unaryProvider")
+    public void checkThatEqualityHolds(Probability p) {
+        Assert.assertEquals(p,p);
+        Assert.assertTrue(p.equals(p));
+    }
+
     @Test(dataProvider = "binaryProvider")
     public void checkThatNegationOfNegationIsIdentity(Probability p, Probability q) {
         Probability r = p.either(q);
