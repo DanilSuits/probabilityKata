@@ -87,11 +87,11 @@ public class Tests {
         }
 
         public TestDouble either(TestDouble other) {
-            return new TestDouble(this.v * other.v);
+            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
         }
 
         public TestDouble combinedWith(TestDouble other) {
-            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+            return new TestDouble(this.v * other.v);
         }
 
         public boolean sameValueAs(TestDouble other) {
