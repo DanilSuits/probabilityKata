@@ -49,6 +49,9 @@ public class TestSpikeTwo {
 
         Probability r = p.either(q);
         Assert.assertEquals(r.inverseOf().inverseOf(), r);
+
+        Probability s = p.combinedWith(q);
+        Assert.assertEquals(s.inverseOf().inverseOf(), s);
     }
 
     static class Probability {
