@@ -73,9 +73,9 @@ public class Tests {
     @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkCombineIsAssociative(P initialSeed) {
 
-        final P left = initialSeed.combinedWith(initialSeed.combinedWith(initialSeed));
-        final P right = initialSeed.combinedWith(initialSeed).combinedWith(initialSeed);
-        checkSameValueAs(left, right);
+        final P head = initialSeed.combinedWith(initialSeed.combinedWith(initialSeed));
+        final P tail = initialSeed.combinedWith(initialSeed).combinedWith(initialSeed);
+        checkSameValueAs(head, tail);
     }
 
     @DataProvider(name = "oneArg")
