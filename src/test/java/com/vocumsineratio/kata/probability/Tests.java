@@ -5,9 +5,13 @@
  */
 package com.vocumsineratio.kata.probability;
 
+import com.beust.jcommander.internal.Lists;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Danil Suits (danil@vast.com)
@@ -86,8 +90,15 @@ public class Tests {
     }
 
     @DataProvider(name = "oneArg")
-    public Object[][] unaryProbabilityProvider() {
-        return new Object[][]{{ TestDouble.from(.6) }};
+    public Iterator<Object []> unaryProbabilityProvider() {
+        final Probability [] samples = { TestDouble.from(.6) };
+
+        List<Object []> derivedTests = Lists.newArrayList();
+        for(Probability current : samples) {
+            derivedTests.add(new Object[] {current});
+        }
+
+        return derivedTests.iterator();
     }
 
     final static class TestDouble implements Probability<TestDouble> {
