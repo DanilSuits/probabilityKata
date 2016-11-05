@@ -33,6 +33,7 @@ public class TestSpikeTwo {
     @Test
     public void checkThatProbabilityImplementsNegation () {
         Probability p;
+        p.inverseOf();
     }
 
     static class Probability {
