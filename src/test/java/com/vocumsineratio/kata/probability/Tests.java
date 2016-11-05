@@ -129,6 +129,17 @@ public class Tests {
             return this.v == other.v;
         }
 
+        @Override
+        public String toString() {
+            return (new StringBuilder())
+                    .append("{ ")
+                    .append(getClass().getSimpleName())
+                    .append(" : ")
+                    .append(this.v)
+                    .append(" }")
+                    .toString();
+        }
+
         public static TestDouble from(double v) {
             return new TestDouble(v);
         }
