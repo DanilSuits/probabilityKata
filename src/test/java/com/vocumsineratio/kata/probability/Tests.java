@@ -112,6 +112,7 @@ public class Tests {
                 ( DoubleProbability.from(.625)
                 , DoubleProbability.from(.6)
                 , BooleanProbability.TRUE
+                , SingularProbability.ONE
                 ) ;
 
         List<Object []> derivedTests = Lists.newArrayList();
@@ -174,6 +175,26 @@ public class Tests {
         }
 
         public boolean sameValueAs(BooleanProbability other) {
+            return this == other;
+        }
+    }
+
+    final static class SingularProbability implements Probability<SingularProbability> {
+        public static SingularProbability ONE = new SingularProbability();
+
+        public SingularProbability inverseOf() {
+            return this;
+        }
+
+        public SingularProbability combinedWith(SingularProbability other) {
+            return this;
+        }
+
+        public SingularProbability either(SingularProbability other) {
+            return this;
+        }
+
+        public boolean sameValueAs(SingularProbability other) {
             return this == other;
         }
     }
