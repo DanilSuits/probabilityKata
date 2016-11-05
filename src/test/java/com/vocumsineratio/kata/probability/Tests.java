@@ -64,7 +64,7 @@ public class Tests {
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
-    public <P extends Probability<P>> void checkInverse(P initialSeed) {
+    public <P extends Probability<P>> void checkNegationOfNegationIsIdentity(P initialSeed) {
         checkSameValueAs(initialSeed.inverseOf().inverseOf(), initialSeed);
     }
 
@@ -214,19 +214,14 @@ public class Tests {
             return from(EnumSet.complementOf(elements));
         }
 
-        public EnumSetProbability combinedWith(EnumSetProbability other) {
-            EnumSet<E> source = EnumSet.noneOf(theClass);
-            for (E current : elements) {
-                if (other.elements.contains(current)) {
-                    source.add(current);
-                }
-            }
-            return from(source);
+        public EnumSetProbability combinedWith(EnumSetProbability that) {
+            // negation of the conjunction of the negation....
+            return this.inverseOf().either(that.inverseOf()).inverseOf();
         }
 
-        public EnumSetProbability either(EnumSetProbability other) {
+        public EnumSetProbability either(EnumSetProbability that) {
             EnumSet<E> source = elements.clone();
-            source.addAll(other.elements);
+            source.addAll(that.elements);
 
             return from(source);
         }
