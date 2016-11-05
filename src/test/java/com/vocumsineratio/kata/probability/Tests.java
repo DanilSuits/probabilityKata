@@ -63,6 +63,17 @@ public class Tests {
         P either(P other);
     }
 
+    abstract static class DeMorganProbability<P extends DeMorganProbability<P>> implements Probability<P> {
+        final public P either(P that) {
+            P notA = this.inverseOf();
+            P notB = that.inverseOf();
+            P disjunctionOfNegation = notA.combinedWith(notB);
+            P negationOfDisjunctionOfNegation = disjunctionOfNegation.inverseOf();
+
+            return negationOfDisjunctionOfNegation;
+        }
+    }
+
     @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkNegationOfNegationIsIdentity(P initialSeed) {
         checkSameValueAs(initialSeed.inverseOf().inverseOf(), initialSeed);
@@ -281,17 +292,6 @@ public class Tests {
 
         public boolean sameValueAs(SingularProbability other) {
             return this == other;
-        }
-    }
-
-    abstract static class DeMorganProbability<P extends DeMorganProbability<P>> implements Probability<P> {
-        final public P either(P that) {
-            P notA = this.inverseOf();
-            P notB = that.inverseOf();
-            P disjunctionOfNegation = notA.combinedWith(notB);
-            P negationOfDisjunctionOfNegation = disjunctionOfNegation.inverseOf();
-
-            return negationOfDisjunctionOfNegation;
         }
     }
 
