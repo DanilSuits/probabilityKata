@@ -35,6 +35,7 @@ public class TestSpikeTwo {
         Probability p = new Probability();
         Probability q = p.inverseOf();
         Probability r = p.either(q);
+        Probability s = p.combinedWith(q);
     }
 
     static class Probability {
