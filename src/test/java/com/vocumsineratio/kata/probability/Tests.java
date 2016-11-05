@@ -76,8 +76,11 @@ public class Tests {
         P b = initialSeed;
         P c = initialSeed;
 
-        final P head = a.combinedWith(b.combinedWith(c));
-        final P tail = a.combinedWith(b).combinedWith(c);
+        P ab = a.combinedWith(b);
+        P bc = b.combinedWith(c);
+
+        final P head = a.combinedWith(bc);
+        final P tail = ab.combinedWith(c);
         checkSameValueAs(head, tail);
     }
 
