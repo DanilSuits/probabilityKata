@@ -290,6 +290,14 @@ public class Tests {
     }
 
     abstract static class DeMorganProbability<P extends DeMorganProbability<P>> implements Probability<P> {
+        public P either(P that) {
+            P notA = this.inverseOf();
+            P notB = that.inverseOf();
+            P disjunctionOfNegation = notA.combinedWith(notB);
+            P negationOfDisjunctionOfNegation = disjunctionOfNegation.inverseOf();
+
+            return negationOfDisjunctionOfNegation;
+        }
     }
 
     final static class DoubleProbability extends DeMorganProbability<DoubleProbability> {
@@ -306,10 +314,6 @@ public class Tests {
 
         public DoubleProbability combinedWith(DoubleProbability other) {
             return DoubleProbability.from(this.v * other.v);
-        }
-
-        public DoubleProbability either(DoubleProbability that) {
-            return DoubleProbability.from(this.v + that.v - (this.v * that.v));
         }
 
         public boolean sameValueAs(DoubleProbability that) {
