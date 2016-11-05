@@ -79,9 +79,7 @@ public class Tests {
         P ab = a.combinedWith(b);
         P bc = b.combinedWith(c);
 
-        final P head = a.combinedWith(bc);
-        final P tail = ab.combinedWith(c);
-        checkSameValueAs(head, tail);
+        checkSameValueAs(a.combinedWith(bc), ab.combinedWith(c));
     }
 
     @DataProvider(name = "oneArg")
