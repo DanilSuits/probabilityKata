@@ -285,7 +285,7 @@ public class Tests {
     }
 
     abstract static class DeMorganProbability<P extends DeMorganProbability<P>> implements Probability<P> {
-        public P either(P that) {
+        final public P either(P that) {
             P notA = this.inverseOf();
             P notB = that.inverseOf();
             P disjunctionOfNegation = notA.combinedWith(notB);
