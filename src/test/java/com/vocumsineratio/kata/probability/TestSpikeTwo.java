@@ -38,5 +38,8 @@ public class TestSpikeTwo {
 
     static class Probability {
 
+        public void inverseOf() {
+            //TODO: To change body of created methods use File | Settings | File Templates.
+        }
     }
 }
