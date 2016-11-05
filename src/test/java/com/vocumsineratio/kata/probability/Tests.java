@@ -70,6 +70,15 @@ public class Tests {
     @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkEither(P initialSeed) {
         checkValueNotSameAsNull(initialSeed.either(initialSeed));
+
+        P a = initialSeed;
+        P and = a.combinedWith(a);
+        P notAndSide = and.inverseOf();
+
+        P notA = initialSeed.inverseOf();
+        P orSide = notA.either(notA);
+
+        checkSameValueAs(notAndSide, orSide);
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
