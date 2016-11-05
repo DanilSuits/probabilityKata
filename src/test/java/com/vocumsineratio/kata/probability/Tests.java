@@ -91,7 +91,8 @@ public class Tests {
     @DataProvider(name = "unaryProbabilityProvider")
     public Iterator<Object []> unaryProbabilityProvider() {
         List<Probability> samples = Lists.<Probability>newArrayList
-                ( TestDouble.from(.6)
+                ( TestDouble.from(.625)
+                // , TestDouble.from(.6)
                 ) ;
 
         List<Object []> derivedTests = Lists.newArrayList();
