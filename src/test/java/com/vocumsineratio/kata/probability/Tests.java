@@ -63,7 +63,7 @@ public class Tests {
         checkSameValueAs(other.inverseOf(), start);
     }
 
-    @Test(dataProvider = "oneArg", enabled = false)
+    @Test(dataProvider = "oneArg")
     public <P extends Probability<P>> void checkCombine(P start) {
         final P other = start.inverseOf();
         checkSameValueAs(other.combinedWith(start), start.combinedWith(other));
