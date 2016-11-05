@@ -64,8 +64,6 @@ public class Tests {
     @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkInverse(P initialSeed) {
         checkSameValueAs(initialSeed.inverseOf().inverseOf(), initialSeed);
-        final P other = initialSeed.inverseOf();
-        checkSameValueAs(other.inverseOf().inverseOf(), other);
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
@@ -76,10 +74,7 @@ public class Tests {
 
     @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkCombineIsAssociative(P initialSeed) {
-        final P other = initialSeed.inverseOf();
-
         checkCombineIsAssociative(initialSeed, initialSeed, initialSeed);
-        checkCombineIsAssociative(other, other, other);
     }
 
     private <P extends Probability<P>> void checkCombineIsAssociative(P a, P b, P c) {
