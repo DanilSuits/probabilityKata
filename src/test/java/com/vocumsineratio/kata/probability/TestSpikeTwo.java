@@ -32,7 +32,7 @@ public class TestSpikeTwo {
 
     @Test
     public void checkThatProbabilityImplementsNegation () {
-        Probability p;
+        Probability p = new Probability();
         p.inverseOf();
     }
 
