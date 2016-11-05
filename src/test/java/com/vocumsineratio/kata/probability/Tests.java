@@ -42,7 +42,7 @@ public class Tests {
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
-    public <V extends Value<V>> void checkValueIdentity(V initialSeed) {
+    public <V extends Value<V>> void checkValueSameAsItself(V initialSeed) {
         checkSameValueAs(initialSeed, initialSeed);
     }
 
