@@ -71,16 +71,37 @@ public class Tests {
     public <P extends Probability<P>> void checkEither(P initialSeed) {
         checkValueNotSameAsNull(initialSeed.either(initialSeed));
 
-        P a = initialSeed;
-        P b = initialSeed;
-        P and = a.combinedWith(b);
-        P notAndSide = and.inverseOf();
+        checkDeMorgansLaws(initialSeed, initialSeed);
+    }
 
-        P notA = a.inverseOf();
-        P notB = b.inverseOf();
-        P orSide = notA.either(notB);
+    @Test(dataProvider = "binaryProbabilityProvider")
+    public <P extends Probability<P>> void checkDeMorgansLaws(P a, P b) {
+        {
+            // the negation of a disjunction
+            P and = a.combinedWith(b);
+            P negationOfDisjunction = and.inverseOf();
 
-        checkSameValueAs(notAndSide, orSide);
+            // is the conjunction of the negations
+            P notA = a.inverseOf();
+            P notB = b.inverseOf();
+            P conjunctionOfNegations = notA.either(notB);
+
+            checkSameValueAs(negationOfDisjunction, conjunctionOfNegations);
+        }
+
+        {
+            // The negation of a conjunction
+            P or = a.either(b);
+            P negationOfConjunection = or.inverseOf();
+
+            // is the disjunction of the negations
+            P notA = a.inverseOf();
+            P notB = b.inverseOf();
+            P disjunctionOfNegations = notA.combinedWith(notB);
+
+            checkSameValueAs(negationOfConjunection, disjunctionOfNegations);
+        }
+
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
@@ -130,6 +151,16 @@ public class Tests {
         }
 
         return derivedTests.iterator();
+    }
+
+    @DataProvider(name = "binaryProbabilityProvider")
+    public Iterator<Object []> binaryProbabilityProvider () {
+        List<Object []> samples = Lists.<Object []>newArrayList
+                ( new Object[] {DoubleProbability.from(.625), DoubleProbability.from(.6)}
+                , new Object[] {BooleanProbability.TRUE, BooleanProbability.FALSE}
+                );
+
+        return samples.iterator();
     }
 
     // This test is specific to TestDouble
