@@ -52,6 +52,7 @@ public class TestSpikeTwo {
     public void checkThatEqualityHolds(Probability p) {
         Assert.assertEquals(p,p);
         Assert.assertTrue(p.equals(p));
+        Assert.assertFalse(p.equals(null));
     }
 
     @Test(dataProvider = "binaryProvider")
