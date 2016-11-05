@@ -75,6 +75,10 @@ public class Tests {
     @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkCombineIsAssociative(P initialSeed) {
         checkCombineIsAssociative(initialSeed, initialSeed, initialSeed);
+
+        final P other = initialSeed.inverseOf();
+        checkCombineIsAssociative(initialSeed, initialSeed, other);
+
     }
 
     private <P extends Probability<P>> void checkCombineIsAssociative(P a, P b, P c) {
