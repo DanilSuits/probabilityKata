@@ -43,5 +43,9 @@ public class TestSpikeTwo {
             //TODO: To change body of created methods use File | Settings | File Templates.
             return null;
         }
+
+        public Probability either(Probability q) {
+            return null;  //TODO: To change body of created methods use File | Settings | File Templates.
+        }
     }
 }
