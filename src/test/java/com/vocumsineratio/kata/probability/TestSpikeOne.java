@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * @author Danil Suits (danil@vast.com)
  */
-public class Tests {
+public class TestSpikeOne {
     /*
         Write a probability value object. It should contain the following methods:
            Probability CombinedWith(Probability)
