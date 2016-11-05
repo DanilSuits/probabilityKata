@@ -37,13 +37,13 @@ public class Tests {
     }
 
     @Test(dataProvider = "oneArg")
-    public <V extends Value<V>> void checkValueNotNull(V start) {
-        Assert.assertFalse(start.sameValueAs(null));
+    public <V extends Value<V>> void checkValueNotNull(V initialSeed) {
+        Assert.assertFalse(initialSeed.sameValueAs(null));
     }
 
     @Test(dataProvider = "oneArg")
-    public <V extends Value<V>> void checkValueIdentity(V start) {
-        checkSameValueAs(start, start);
+    public <V extends Value<V>> void checkValueIdentity(V initialSeed) {
+        checkSameValueAs(initialSeed, initialSeed);
     }
 
     private <V extends Value<V>> void checkSameValueAs(V actual, V expected) {
@@ -58,16 +58,16 @@ public class Tests {
     }
 
     @Test(dataProvider = "oneArg")
-    public <P extends Probability<P>> void checkInverse(P start) {
-        checkSameValueAs(start.inverseOf().inverseOf(), start);
-        final P other = start.inverseOf();
+    public <P extends Probability<P>> void checkInverse(P initialSeed) {
+        checkSameValueAs(initialSeed.inverseOf().inverseOf(), initialSeed);
+        final P other = initialSeed.inverseOf();
         checkSameValueAs(other.inverseOf().inverseOf(), other);
     }
 
     @Test(dataProvider = "oneArg")
-    public <P extends Probability<P>> void checkCombine(P start) {
-        final P other = start.inverseOf();
-        checkSameValueAs(other.combinedWith(start), start.combinedWith(other));
+    public <P extends Probability<P>> void checkCombine(P initialSeed) {
+        final P other = initialSeed.inverseOf();
+        checkSameValueAs(other.combinedWith(initialSeed), initialSeed.combinedWith(other));
     }
 
     @DataProvider(name = "oneArg")
