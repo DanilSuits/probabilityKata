@@ -107,11 +107,11 @@ public class Tests {
 
     @DataProvider(name = "unaryProbabilityProvider")
     public Iterator<Object []> unaryProbabilityProvider() {
-        final TestDouble exactTestDouble = TestDouble.from(.625);
 
         List<Probability> samples = Lists.<Probability>newArrayList
-                (exactTestDouble
-                , TestDouble.from(.6)
+                ( DoubleProbability.from(.625)
+                , DoubleProbability.from(.6)
+                , BooleanProbability.TRUE
                 ) ;
 
         List<Object []> derivedTests = Lists.newArrayList();
@@ -143,31 +143,62 @@ public class Tests {
         double noRoundingError =  initialSeed * (initialSeed * other);
         double withRoundingError = (initialSeed * initialSeed) * other;
 
-        checkSameValueAs(TestDouble.from(noRoundingError), TestDouble.from(withRoundingError));
+        checkSameValueAs(DoubleProbability.from(noRoundingError), DoubleProbability.from(withRoundingError));
 
     }
 
-    final static class TestDouble implements Probability<TestDouble> {
+    final static class BooleanProbability implements Probability<BooleanProbability> {
+        private final boolean internalState;
+
+        BooleanProbability(boolean internalState) {
+            this.internalState = internalState;
+        }
+
+        public static BooleanProbability TRUE =  new BooleanProbability(true);
+        public static BooleanProbability FALSE = new BooleanProbability(false);
+
+        static BooleanProbability from(boolean state) {
+            return state ? TRUE : FALSE;
+        }
+
+        public BooleanProbability inverseOf() {
+            return from(! internalState);
+        }
+
+        public BooleanProbability combinedWith(BooleanProbability other) {
+            return from(internalState && other.internalState);
+        }
+
+        public BooleanProbability either(BooleanProbability other) {
+            return from( internalState || other.internalState);
+        }
+
+        public boolean sameValueAs(BooleanProbability other) {
+            return this == other;
+        }
+    }
+
+    final static class DoubleProbability implements Probability<DoubleProbability> {
         // The internal state should be held as a decimal
         private final double v;
 
-        TestDouble(double v) {
+        DoubleProbability(double v) {
             this.v = v;
         }
 
-        public TestDouble inverseOf() {
-            return TestDouble.from(1 - this.v);
+        public DoubleProbability inverseOf() {
+            return DoubleProbability.from(1 - this.v);
         }
 
-        public TestDouble combinedWith(TestDouble other) {
-            return TestDouble.from(this.v * other.v);
+        public DoubleProbability combinedWith(DoubleProbability other) {
+            return DoubleProbability.from(this.v * other.v);
         }
 
-        public TestDouble either(TestDouble that) {
-            return TestDouble.from(this.v + that.v - (this.v * that.v));
+        public DoubleProbability either(DoubleProbability that) {
+            return DoubleProbability.from(this.v + that.v - (this.v * that.v));
         }
 
-        public boolean sameValueAs(TestDouble that) {
+        public boolean sameValueAs(DoubleProbability that) {
             if (null == that) return false;
 
             return Comparison.closeEnough(this, that);
@@ -178,7 +209,7 @@ public class Tests {
             // This choice is an arbitrary one.
             static final double TOLERANCE = .00001;
 
-            static boolean closeEnough(TestDouble lhs, TestDouble rhs) {
+            static boolean closeEnough(DoubleProbability lhs, DoubleProbability rhs) {
                 return closeEnough (lhs.v, rhs.v);
             }
 
@@ -206,8 +237,8 @@ public class Tests {
                     .toString();
         }
 
-        public static TestDouble from(double v) {
-            return new TestDouble(v);
+        public static DoubleProbability from(double v) {
+            return new DoubleProbability(v);
         }
     }
 }
