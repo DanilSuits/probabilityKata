@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -99,8 +100,14 @@ public class Tests {
 
         List<Object []> derivedTests = Lists.newArrayList();
         for(Probability current : samples) {
-            derivedTests.add(new Object[] {current});
-            derivedTests.add(new Object[] {current.inverseOf()});
+            final List<Probability> unaryStates = Arrays.asList
+                    ( current
+                    , current.inverseOf()
+                    );
+
+            for (Probability initialState : unaryStates) {
+                derivedTests.add(new Object[]{initialState});
+            }
         }
 
         return derivedTests.iterator();
