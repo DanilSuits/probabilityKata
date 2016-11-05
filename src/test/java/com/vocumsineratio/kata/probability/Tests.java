@@ -37,7 +37,7 @@ public class Tests {
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
-    public <V extends Value<V>> void checkValueNotNull(V initialSeed) {
+    public <V extends Value<V>> void checkValueNotSameAsNull(V initialSeed) {
         Assert.assertFalse(initialSeed.sameValueAs(null));
     }
 
