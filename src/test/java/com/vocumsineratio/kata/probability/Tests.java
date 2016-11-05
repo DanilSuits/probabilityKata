@@ -87,7 +87,7 @@ public class Tests {
         }
 
         public TestDouble either(TestDouble other) {
-            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+            return new TestDouble(this.v * other.v);
         }
 
         public TestDouble combinedWith(TestDouble other) {
