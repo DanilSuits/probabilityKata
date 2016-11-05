@@ -34,6 +34,7 @@ public class TestSpikeTwo {
     public void checkThatProbablityImplementsCorrectSignatures() {
         Probability p = new Probability();
         Probability q = p.inverseOf();
+        Probability r = p.either(q);
     }
 
     static class Probability {
