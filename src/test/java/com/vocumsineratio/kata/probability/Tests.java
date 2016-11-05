@@ -11,6 +11,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -136,6 +137,8 @@ public class Tests {
                 , DoubleProbability.from(.6)
                 , BooleanProbability.TRUE
                 , SingularProbability.ONE
+                , MontyPython.ALL
+                , MontyPython.TIME_TO_THROW
                 ) ;
 
         List<Object []> derivedTests = Lists.newArrayList();
@@ -178,7 +181,61 @@ public class Tests {
         double withRoundingError = (initialSeed * initialSeed) * other;
 
         checkSameValueAs(DoubleProbability.from(noRoundingError), DoubleProbability.from(withRoundingError));
+    }
 
+    enum MontyPython {
+        ONE, TWO, FIVE, THREESIR;
+
+        static final EnumSetProbability<MontyPython> from (EnumSet<MontyPython> elements) {
+            return new EnumSetProbability<MontyPython>(MontyPython.class, elements);
+        }
+
+        static final EnumSetProbability<MontyPython> from (MontyPython first, MontyPython... rest) {
+           return from (EnumSet.of(first,rest));
+        }
+        static final EnumSetProbability<MontyPython> ALL = from(EnumSet.allOf(MontyPython.class));
+        static final EnumSetProbability<MontyPython> TIME_TO_THROW = from(ONE, TWO, FIVE);
+    }
+
+    final static class EnumSetProbability<E extends Enum<E>> implements Probability<EnumSetProbability<E>> {
+        private final Class<E> theClass;
+        private final EnumSet<E> elements;
+
+        EnumSetProbability(Class<E> theClass, EnumSet<E> elements) {
+            this.theClass = theClass;
+            this.elements = elements;
+        }
+
+        public EnumSetProbability<E> from (EnumSet<E> source) {
+            return new EnumSetProbability<E>(theClass, source.clone());
+        }
+
+        public EnumSetProbability inverseOf() {
+            return from(EnumSet.complementOf(elements));
+        }
+
+        public EnumSetProbability combinedWith(EnumSetProbability other) {
+            EnumSet<E> source = EnumSet.noneOf(theClass);
+            for (E current : elements) {
+                if (other.elements.contains(current)) {
+                    source.add(current);
+                }
+            }
+            return from(source);
+        }
+
+        public EnumSetProbability either(EnumSetProbability other) {
+            EnumSet<E> source = elements.clone();
+            source.addAll(other.elements);
+
+            return from(source);
+        }
+
+        public boolean sameValueAs(EnumSetProbability that) {
+            if (null == that) return false;
+
+            return this.elements.equals(that.elements);
+        }
     }
 
     final static class BooleanProbability implements Probability<BooleanProbability> {
