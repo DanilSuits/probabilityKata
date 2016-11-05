@@ -69,6 +69,7 @@ public class Tests {
         Assert.assertNotNull(expected);
         Assert.assertNotNull(actual);
         Assert.assertTrue(actual.sameValueAs(expected));
+        Assert.assertTrue(expected.sameValueAs(actual));
     }
 
 
