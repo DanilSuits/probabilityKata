@@ -104,6 +104,24 @@ public class Tests {
         return derivedTests.iterator();
     }
 
+    // This test is specific to TestDouble
+    @Test
+    public void testFloatingPointMathProblems () {
+        // Here's my arbitrarily chosen probability
+        // It has the lucky property that initialSeed * initialSeed
+        // is not exactly expressable as a double.
+        final double initialSeed = .4;
+
+        // And the same negation I was using all along
+        double other = 1 - initialSeed;
+
+        double noRoundingError =  initialSeed * (initialSeed * other);
+        double withRoundingError = (initialSeed * initialSeed) * other;
+
+        checkSameValueAs(TestDouble.from(noRoundingError), TestDouble.from(withRoundingError));
+
+    }
+
     final static class TestDouble implements Probability<TestDouble> {
         // The internal state should be held as a decimal
         private final double v;
