@@ -144,6 +144,11 @@ public class Tests {
 
         public boolean sameValueAs(TestDouble other) {
             if (null == other) return false;
+
+            final double TOLERANCE = .00001;
+            if ((this.v - other.v) < TOLERANCE) return true;
+            if ((other.v - this.v) < TOLERANCE) return true;
+
             return this.v == other.v;
         }
 
