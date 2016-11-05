@@ -93,8 +93,10 @@ public class Tests {
 
     @DataProvider(name = "unaryProbabilityProvider")
     public Iterator<Object []> unaryProbabilityProvider() {
+        final TestDouble exactTestDouble = TestDouble.from(.625);
+
         List<Probability> samples = Lists.<Probability>newArrayList
-                ( TestDouble.from(.625)
+                (exactTestDouble
                 , TestDouble.from(.6)
                 ) ;
 
