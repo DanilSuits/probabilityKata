@@ -68,6 +68,11 @@ public class Tests {
     }
 
     @Test(dataProvider = "unaryProbabilityProvider")
+    public <P extends Probability<P>> void checkEither(P initialSeed) {
+        checkValueNotSameAsNull(initialSeed.either(initialSeed));
+    }
+
+    @Test(dataProvider = "unaryProbabilityProvider")
     public <P extends Probability<P>> void checkCombine(P initialSeed) {
         final P other = initialSeed.inverseOf();
         checkSameValueAs(other.combinedWith(initialSeed), initialSeed.combinedWith(other));
