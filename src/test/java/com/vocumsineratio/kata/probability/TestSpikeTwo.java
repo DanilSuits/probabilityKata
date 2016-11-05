@@ -58,7 +58,7 @@ public class TestSpikeTwo {
         }
 
         public Probability either(Probability q) {
-            return null;  //TODO: To change body of created methods use File | Settings | File Templates.
+            return this;
         }
 
         public Probability combinedWith(Probability q) {
