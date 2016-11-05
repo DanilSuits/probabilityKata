@@ -70,6 +70,11 @@ public class Tests {
         checkSameValueAs(other.combinedWith(initialSeed), initialSeed.combinedWith(other));
     }
 
+    @Test(dataProvider = "unaryProbabilityProvider")
+    public <P extends Probability<P>> void checkCombineIsAssociative(P initialSeed) {
+        checkSameValueAs(initialSeed.combinedWith(initialSeed.combinedWith(initialSeed)), initialSeed.combinedWith(initialSeed).combinedWith(initialSeed));
+    }
+
     @DataProvider(name = "oneArg")
     public Object[][] unaryProbabilityProvider() {
         return new Object[][]{{ TestDouble.from(.6) }};
