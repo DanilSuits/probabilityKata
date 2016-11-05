@@ -91,7 +91,9 @@ public class Tests {
 
     @DataProvider(name = "oneArg")
     public Iterator<Object []> unaryProbabilityProvider() {
-        final Probability [] samples = { TestDouble.from(.6) };
+        List<Probability> samples = Lists.<Probability>newArrayList
+                ( TestDouble.from(.6)
+                ) ;
 
         List<Object []> derivedTests = Lists.newArrayList();
         for(Probability current : samples) {
