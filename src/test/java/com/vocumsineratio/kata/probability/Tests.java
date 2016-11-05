@@ -155,7 +155,8 @@ public class Tests {
         }
 
         public TestDouble either(TestDouble other) {
-            return null;  //TODO: To change body of implemented methods use File | Settings | File Templates.
+            // TODO: deliberate bug
+            return this;
         }
 
         public boolean sameValueAs(TestDouble that) {
