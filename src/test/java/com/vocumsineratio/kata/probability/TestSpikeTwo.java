@@ -48,8 +48,7 @@ public class TestSpikeTwo {
     static class Probability {
 
         public Probability inverseOf() {
-            //TODO: To change body of created methods use File | Settings | File Templates.
-            return null;
+            return this;
         }
 
         public Probability either(Probability q) {
