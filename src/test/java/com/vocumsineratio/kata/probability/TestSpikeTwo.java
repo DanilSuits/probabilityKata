@@ -31,7 +31,7 @@ public class TestSpikeTwo {
     */
 
     @Test
-    public void checkThatProbabilityImplementsNegation () {
+    public void checkThatProbablityImplementsCorrectSignatures() {
         Probability p = new Probability();
         Probability q = p.inverseOf();
     }
