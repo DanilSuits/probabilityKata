@@ -107,3 +107,10 @@ it.
 In a more rational discpline, I'd just move the comment
 and nuke the original test.
 
+## REFACTOR
+
+The name of the result is real, but the meaning of it was
+implicit; 0.25 is the right answer because it represents
+0.5 multiplied by itself.
+
+So following Kent's lead, we tease that piece out.

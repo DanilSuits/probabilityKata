@@ -10,11 +10,8 @@ package com.vocumsineratio.kata.probability;
  */
 public class CoinTossing {
     public static double bothCoinsLandHeads() {
-        // This simplest thing that can possibly work.
-
-        // Now my IDE complains that the use of the
-        // variable is redundant.  Sometimes you can't win.
-        final double probabilityBothCoinsLandHeads = .25d;
+        final double probabilitySingleCointLandsHeads = .5d;
+        final double probabilityBothCoinsLandHeads = probabilitySingleCointLandsHeads * probabilitySingleCointLandsHeads;
         return probabilityBothCoinsLandHeads;
     }
 }
