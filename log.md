@@ -151,3 +151,14 @@ a black ace from a deck of playing cards.  Such is life.
 The outcome is also a probability, so let's make that explicit as
 well.
 
+## REFACTOR
+
+Extracting the core of the work into a function.  The name combine
+being taken from the ubiquitous language -- it other words, chosen
+to match the interface that we're supposed to create in this exercise.
+
+There are two important things to note here; first, that the signature
+of this method is expressed entirely in Probabilities.  We've left the
+boundary data behind.  And second, that the method shows us that this
+invocation of the probability type is anemic; we're reaching into the
+data structure to extract values and put them back.

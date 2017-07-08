@@ -27,10 +27,14 @@ public class CoinTossing {
         Probability firstTossLandsHeads = singleTossLandsHeads;
         Probability secondTossLandsHeads = singleTossLandsHeads;
 
-        final double probabilityBothCoinsLandHeads = firstTossLandsHeads.value * secondTossLandsHeads.value;
-
-        Probability bothCoinsLandHeads = new Probability(probabilityBothCoinsLandHeads);
+        Probability bothCoinsLandHeads = combine(firstTossLandsHeads, secondTossLandsHeads);
 
         return bothCoinsLandHeads.value;
+    }
+
+    private static Probability combine(Probability firstTossLandsHeads, Probability secondTossLandsHeads) {
+        final double probabilityBothCoinsLandHeads = firstTossLandsHeads.value * secondTossLandsHeads.value;
+
+        return new Probability(probabilityBothCoinsLandHeads);
     }
 }
