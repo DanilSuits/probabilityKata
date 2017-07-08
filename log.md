@@ -32,3 +32,21 @@ I probably want new methods to have more restricted access.
 Which is to say, I want putting things into the public API
 to be a deliberate act, rather than a default.  So I need
 to see later if I can adjust the templates to manage it.
+
+## RED
+
+Now that I have an API, I can constrain the value.
+
+The second test subsumes the first, but I can't get rid
+of the second test because the first one isn't passing yet.
+
+The use of a primitive for the expected value here is not
+an accident.  The test code is exercising how the implementation
+works at the boundary, because that's where the constraint
+is -- the internal workings of the model are internal.
+
+Furthermore, this is all the API surface we have at this
+point, so we get to live with it.  That's important; the
+tests are communicating to the author that the interface 
+isn't expressive.
+

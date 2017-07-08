@@ -5,6 +5,7 @@
  */
 package com.vocumsineratio.kata.probability;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -40,5 +41,12 @@ public class Tests {
 
         
         double result = CoinTossing.bothCoinsLandHeads();
+    }
+
+    @Test
+    public void bothCoinsLandHeads() {
+        double result = CoinTossing.bothCoinsLandHeads();
+        final double expectedResult = .25;
+        Assert.assertEquals(result, expectedResult);
     }
 }
