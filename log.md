@@ -69,3 +69,41 @@ one possibility is to create a new entry point in the api
 that is specialized to that use case, then grind on
 removing the duplication.
 
+## REFACTOR
+
+First refactoring is to put add context to the production
+code.  In other words, we're expressing explicitly in the
+code what is going on.
+
+This is a key idea I missed when I first experimented with
+TDD many years ago.  At the time, _duplication_ was
+understood to be the key trigger for refactoring.  The
+abstractions were supposed to be understood from first
+discovering that something was duplicated, and then acting
+on it.
+
+Kent Beck had a reputation for being able to see duplication
+where others would miss it.  I think what was really
+happening was that he was going after the abstractions
+earlier, by making meaning explicit earlier in the
+process.
+
+In this case, there is duplication between the test code
+and the production code; they each have a separate and
+distinct understanding of coin flipping that happen to 
+agree, and happen to be represented the same way.
+
+### Eliding tests
+
+Since both tests are green, and I can establish by inspection
+that the second test covers the first, I could elide
+the initial test.
+
+Unfortunately, what I didn't think about at the time
+of writing the second test (which I'm treating as immutable),
+is that eliding the test takes the explanatory comment with
+it.
+
+In a more rational discpline, I'd just move the comment
+and nuke the original test.
+

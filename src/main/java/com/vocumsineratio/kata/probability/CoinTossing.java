@@ -12,10 +12,9 @@ public class CoinTossing {
     public static double bothCoinsLandHeads() {
         // This simplest thing that can possibly work.
 
-        // A plugin in the IDE is complaining that I have
-        // a [Connascence of Meaning] issue to clean up
-        // here.  That's fine -- cleaning up that sort
-        // of thing is a refactoring activity.
-        return .25d;
+        // Now my IDE complains that the use of the
+        // variable is redundant.  Sometimes you can't win.
+        final double probabilityBothCoinsLandHeads = .25d;
+        return probabilityBothCoinsLandHeads;
     }
 }
