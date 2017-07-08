@@ -114,3 +114,20 @@ implicit; 0.25 is the right answer because it represents
 0.5 multiplied by itself.
 
 So following Kent's lead, we tease that piece out.
+
+## REFACTOR
+
+At this point, wanting to get on with it, I go after primitive
+obsession; "Probability" is the concept, double just happens to 
+be the representation.
+
+So the concept is made explicit.  It doesn't go into the public
+API yet, of course; partly because it isn't done, partly because
+_you aren't going to need it_, but mostly because we're still
+exploring the space.
+
+We know, from the problem definition, that the concept of
+probability eventually escapes from this test.  But playing by
+the rules, we would want to keep our experiments within a tight
+scope until we had accumulated some evidence that they are
+fit for purpose.

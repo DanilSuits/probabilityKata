@@ -9,9 +9,18 @@ package com.vocumsineratio.kata.probability;
  * @author Danil Suits (danil@vast.com)
  */
 public class CoinTossing {
+    static class Probability {
+        final double value;
+
+        Probability(double value) {
+            this.value = value;
+        }
+    }
+
     public static double bothCoinsLandHeads() {
-        final double probabilitySingleCointLandsHeads = .5d;
-        final double probabilityBothCoinsLandHeads = probabilitySingleCointLandsHeads * probabilitySingleCointLandsHeads;
+        Probability singleCoinLandsHeads = new Probability(0.5d);
+
+        final double probabilityBothCoinsLandHeads = singleCoinLandsHeads.value * singleCoinLandsHeads.value;
         return probabilityBothCoinsLandHeads;
     }
 }
