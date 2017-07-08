@@ -28,6 +28,9 @@ public class CoinTossing {
         Probability secondTossLandsHeads = singleTossLandsHeads;
 
         final double probabilityBothCoinsLandHeads = firstTossLandsHeads.value * secondTossLandsHeads.value;
-        return probabilityBothCoinsLandHeads;
+
+        Probability bothCoinsLandHeads = new Probability(probabilityBothCoinsLandHeads);
+
+        return bothCoinsLandHeads.value;
     }
 }

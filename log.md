@@ -145,3 +145,9 @@ as an argument.
 
 A better problem to model would have been the odds of drawing
 a black ace from a deck of playing cards.  Such is life.
+
+## REFACTOR
+
+The outcome is also a probability, so let's make that explicit as
+well.
+
