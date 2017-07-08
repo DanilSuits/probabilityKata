@@ -31,12 +31,9 @@ public class CoinTossing {
         Probability firstTossLandsHeads = singleTossLandsHeads;
         Probability secondTossLandsHeads = singleTossLandsHeads;
 
-        Probability bothCoinsLandHeads = combine(firstTossLandsHeads, secondTossLandsHeads);
+        Probability bothCoinsLandHeads = firstTossLandsHeads.combinedWith(secondTossLandsHeads);
 
         return bothCoinsLandHeads.value;
     }
 
-    private static Probability combine(Probability firstTossLandsHeads, Probability secondTossLandsHeads) {
-        return firstTossLandsHeads.combinedWith(secondTossLandsHeads);
-    }
 }

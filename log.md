@@ -168,3 +168,7 @@ data structure to extract values and put them back.
 Here's the non-anemic version: we leave the data inside the probability
 type, and let it do its job.
 
+## REFACTOR
+
+Since combine(Probability, Probability) is now redundant, we can get rid
+of it as easily as we introduced it.
