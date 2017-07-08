@@ -15,6 +15,10 @@ public class CoinTossing {
         Probability(double value) {
             this.value = value;
         }
+
+        Probability combinedWith(Probability that) {
+            return new Probability(this.value * that.value);
+        }
     }
 
     public static double bothCoinsLandHeads() {
@@ -33,8 +37,6 @@ public class CoinTossing {
     }
 
     private static Probability combine(Probability firstTossLandsHeads, Probability secondTossLandsHeads) {
-        final double probabilityBothCoinsLandHeads = firstTossLandsHeads.value * secondTossLandsHeads.value;
-
-        return new Probability(probabilityBothCoinsLandHeads);
+        return firstTossLandsHeads.combinedWith(secondTossLandsHeads);
     }
 }

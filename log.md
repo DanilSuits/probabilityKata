@@ -162,3 +162,9 @@ of this method is expressed entirely in Probabilities.  We've left the
 boundary data behind.  And second, that the method shows us that this
 invocation of the probability type is anemic; we're reaching into the
 data structure to extract values and put them back.
+
+## REFACTOR
+
+Here's the non-anemic version: we leave the data inside the probability
+type, and let it do its job.
+
