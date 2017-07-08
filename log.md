@@ -16,3 +16,19 @@ test without restricting its behavior.
 We get a RED bar, of course, because the test code doesn't
 compile.
 
+## GREEN: extending the API
+
+Automatic code generation does all the work to create the
+class.  
+
+My IDE doesn't have an intuitive interface for
+creating the new module in a new package, which is a little
+bit unfortunate.  On the other hand, refactoring an
+implementation into a new package using my rules would
+be an interesting exercise.
+
+The new method is public by default; for this discipline
+I probably want new methods to have more restricted access.
+Which is to say, I want putting things into the public API
+to be a deliberate act, rather than a default.  So I need
+to see later if I can adjust the templates to manage it.
