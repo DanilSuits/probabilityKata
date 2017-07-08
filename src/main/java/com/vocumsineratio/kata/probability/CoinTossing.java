@@ -10,6 +10,12 @@ package com.vocumsineratio.kata.probability;
  */
 public class CoinTossing {
     public static double bothCoinsLandHeads() {
-        return 0;  //TODO: To change body of created methods use File | Settings | File Templates.
+        // This simplest thing that can possibly work.
+
+        // A plugin in the IDE is complaining that I have
+        // a [Connascence of Meaning] issue to clean up
+        // here.  That's fine -- cleaning up that sort
+        // of thing is a refactoring activity.
+        return .25d;
     }
 }

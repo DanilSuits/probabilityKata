@@ -50,3 +50,22 @@ point, so we get to live with it.  That's important; the
 tests are communicating to the author that the interface 
 isn't expressive.
 
+## GREEN 
+
+The simplest thing that could possibly work!
+
+My discipline is this: if the tests are green, then I
+can _ship_ if the tests are complete.  
+
+A coin tossing module that can only compute a single 
+result isn't going to add a lot of business value, 
+but any code that links to this library is going to 
+get the right answer.
+
+This is, I think, an important trick to keep in mind;
+that if we have some new behavior that we need, and aren't
+quite sure how it goes with the current implementation,
+one possibility is to create a new entry point in the api
+that is specialized to that use case, then grind on
+removing the duplication.
+
