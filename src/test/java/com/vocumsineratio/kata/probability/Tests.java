@@ -5,6 +5,8 @@
  */
 package com.vocumsineratio.kata.probability;
 
+import org.testng.annotations.Test;
+
 /**
  * @author Danil Suits (danil@vast.com)
  */
@@ -27,4 +29,16 @@ public class Tests {
         One last thing. You can't put any getters on the object.  What's the first test to write?
 
     */
+
+    @Test
+    public void extendHappensTwice() {
+        // Bootstrapping begins with declaring the interface that you want to have.
+
+        // Part of the problem is that we have an implementation goal without a business
+        // goal; so we need to invent a domain problem that we think will lead to
+        // the probability implementation above.  So I flipped a coin.
+
+        
+        double result = CoinTossing.bothCoinsLandHeads();
+    }
 }
