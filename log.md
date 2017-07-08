@@ -131,3 +131,17 @@ probability eventually escapes from this test.  But playing by
 the rules, we would want to keep our experiments within a tight
 scope until we had accumulated some evidence that they are
 fit for purpose.
+
+## REFACTOR
+
+In this step, I realized that the language was really calling
+for combining two different events, that happen to have the
+same outcome; so I introduced an explicit first and second.
+
+Confessions: the refactoring came first, then the justification
+followed.  We know, from the problem statement of the kata, that
+we work toward "CombinedWith", which accepts a second probability 
+as an argument.
+
+A better problem to model would have been the odds of drawing
+a black ace from a deck of playing cards.  Such is life.

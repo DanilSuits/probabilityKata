@@ -18,9 +18,16 @@ public class CoinTossing {
     }
 
     public static double bothCoinsLandHeads() {
-        Probability singleCoinLandsHeads = new Probability(0.5d);
+        // This is a property specific to coins
+        Probability singleTossLandsHeads = new Probability(0.5d);
 
-        final double probabilityBothCoinsLandHeads = singleCoinLandsHeads.value * singleCoinLandsHeads.value;
+        // We're making a statement about something happening twice, therefore
+        // two events.  It happens that the two events share the same distribution
+        // of outcomes, so they are anchored to the same universal probability.
+        Probability firstTossLandsHeads = singleTossLandsHeads;
+        Probability secondTossLandsHeads = singleTossLandsHeads;
+
+        final double probabilityBothCoinsLandHeads = firstTossLandsHeads.value * secondTossLandsHeads.value;
         return probabilityBothCoinsLandHeads;
     }
 }
