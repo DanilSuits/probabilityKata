@@ -74,11 +74,17 @@ public class CoinTossing {
     }
 
     static class DomainModel {
-        static <Probability extends ProbabilityContract<Probability>> Probability bothTossesLandHeads(Coin<Probability> coin) {
+        static <Probability extends ProbabilityContract<Probability>
+                , Coin extends CoinContract<Probability>
+                >
+        Probability bothTossesLandHeads(Coin coin) {
             return bothTossesLandHeads(coin, coin);
         }
 
-        static <Probability extends ProbabilityContract<Probability>> Probability  bothTossesLandHeads(Coin<Probability> firstCoin, Coin<Probability> secondCoin) {
+        static <Probability extends ProbabilityContract<Probability>
+                , Coin extends CoinContract<Probability>
+                >
+        Probability bothTossesLandHeads(Coin firstCoin, Coin secondCoin) {
             // Boy, this sure looks like a violation of the law of Demeter.  I'm
             // not at all worried about it, because once again we're interacting
             // only with the API, and these are just queries that leave the

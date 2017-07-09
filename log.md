@@ -367,3 +367,9 @@ So we introduce a method to constrain the property access.
 
 Then we can define the interface separately from the implementation.  The
 names suck; that's fine for now.
+
+## REFACTOR
+
+Now the domain model only depends on the interface.  The method signatures
+are getting uglier to work with, but the actual code within the methods
+still uses spellings taken from the domain; so that much is OK.
