@@ -75,12 +75,16 @@ public class CoinTossing {
 
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
-        Probability singleTossLandsHeads = new Probability(0.5d);
-        Coin fairCoin = new Coin(singleTossLandsHeads);
+        Coin fairCoin = createFairCoin();
 
         Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 
         return toDouble(bothTossesLandHeads);
+    }
+
+    private static Coin createFairCoin() {
+        Probability singleTossLandsHeads = new Probability(0.5d);
+        return new Coin(singleTossLandsHeads);
     }
 
     private static double toDouble(Probability bothCoinsLandHeads) {

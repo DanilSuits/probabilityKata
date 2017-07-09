@@ -258,3 +258,7 @@ event.  I suspect deeper teasing might expose a distribution as
 well.  The rabbit hole goes deeper; the cutoff in this exercise
 is arbitrary -- yagni, perhaps.  We aren't trying to discover a
 model of everything from a single use case.
+
+## REFACTOR
+
+Applying extract method to create an instance of a fair coin.
