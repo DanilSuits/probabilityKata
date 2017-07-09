@@ -401,3 +401,15 @@ the impact of a change on each implementation.
 Since _this_ data model always uses its own implementation of Probability
 when creating a Coin, we don't need the generic type in the data model.
 
+## REFACTOR
+
+At this point, the data model has it's own understanding of Coin and
+Probability using an appropriate spelling; and the scope of the domain
+model has these understandings as well.  There is a common understanding;
+but the spellings there suck.
+
+However, this is just an artifact of the sequence of moves I used in
+developing this implementation.  We should be able to clean up the
+spellings used in the common understanding as well.
+
+So as a first step, we create a scope.

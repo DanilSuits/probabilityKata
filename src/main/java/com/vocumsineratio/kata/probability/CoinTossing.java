@@ -9,6 +9,9 @@ package com.vocumsineratio.kata.probability;
  * @author Danil Suits (danil@vast.com)
  */
 public class CoinTossing {
+    static class API {
+
+    }
     // TODO: wow, what an awful name.
     interface ProbabilityContract<P extends ProbabilityContract<P>> {
         P combinedWith(P that);
