@@ -346,3 +346,11 @@ implementation.
 This is not without a cost, however -- the domain code no longer has the
 right language; "P" is not taken from the domain language.  So at this
 point we've regressed.
+
+## REFACTOR
+
+However, the scope of the type parameter is tightly limited; we can
+use any spelling we like there, so long as we are internally consistent.
+That means that we can use the spelling Probability within this scope.
+Thus, we can restore the domain language to the method, without impacting
+correctness.

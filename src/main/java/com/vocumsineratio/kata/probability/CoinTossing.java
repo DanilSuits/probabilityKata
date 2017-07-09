@@ -65,23 +65,23 @@ public class CoinTossing {
     }
 
     static class DomainModel {
-        static <P extends ProbabilityContract<P>> P bothTossesLandHeads(Coin<P> coin) {
+        static <Probability extends ProbabilityContract<Probability>> Probability bothTossesLandHeads(Coin<Probability> coin) {
             return bothTossesLandHeads(coin, coin);
         }
 
-        static <P extends ProbabilityContract<P>> P bothTossesLandHeads(Coin<P> firstCoin, Coin<P> secondCoin) {
+        static <Probability extends ProbabilityContract<Probability>> Probability  bothTossesLandHeads(Coin<Probability> firstCoin, Coin<Probability> secondCoin) {
             // Boy, this sure looks like a violation of the law of Demeter.  I'm
             // not at all worried about it, because once again we're interacting
             // only with the API, and these are just queries that leave the
             // underlying state unchanged.
-            P firstTossLandsHeads = firstCoin.singleTossLandsHeads;
-            P secondTossLandsHeads = secondCoin.singleTossLandsHeads;
+            Probability firstTossLandsHeads = firstCoin.singleTossLandsHeads;
+            Probability secondTossLandsHeads = secondCoin.singleTossLandsHeads;
 
             return bothEventsHappen(firstTossLandsHeads, secondTossLandsHeads);
 
         }
 
-        static <P extends ProbabilityContract<P>> P bothEventsHappen(P firstEvent, P secondEvent) {
+        static <Probability extends ProbabilityContract<Probability>> Probability bothEventsHappen(Probability firstEvent, Probability secondEvent) {
             return firstEvent.combinedWith(secondEvent);
         }
     }
