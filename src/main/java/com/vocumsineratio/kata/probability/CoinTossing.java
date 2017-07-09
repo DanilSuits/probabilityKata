@@ -14,6 +14,11 @@ public class CoinTossing {
         P combinedWith(P that);
     }
 
+    // TODO: also, this one.
+    interface CoinContract<P extends ProbabilityContract<P>> {
+        P heads();
+    }
+
     static class Probability implements ProbabilityContract<Probability> {
         // This represents a specific _decision_ about how we happen to represent probabilities
         // in memory.  By encapsulating it within its own module (the Probability class), we
@@ -43,14 +48,14 @@ public class CoinTossing {
         }
     }
 
-    static class Coin<P extends ProbabilityContract<P>> {
+    static class Coin<P extends ProbabilityContract<P>> implements CoinContract<P> {
         final P singleTossLandsHeads;
 
         Coin(P singleTossLandsHeads) {
             this.singleTossLandsHeads = singleTossLandsHeads;
         }
 
-        P heads() {
+        public P heads() {
             return singleTossLandsHeads;
         }
     }

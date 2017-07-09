@@ -362,3 +362,8 @@ the member variable causes problems, because we're coupled to the
 implementation, rather than to the interface.
 
 So we introduce a method to constrain the property access.
+
+## REFACTOR
+
+Then we can define the interface separately from the implementation.  The
+names suck; that's fine for now.
