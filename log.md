@@ -281,3 +281,19 @@ I'm going to leave that complexity, as it is an orthoganal
 concern to both the probability kata (which only cares that
 those two decisions can be changed independently), and to
 my current goal.
+
+## INTERLUDE
+
+Finally, we are ready to begin.
+
+There is a coupling problem in the current implementation; the 
+representation of probability in memory is tightly coupled to the 
+definition of its interface.
+
+In particular, we notice that the domain model only cares about
+the interface; it's never actually inspecting the underlying
+data.  So we should be able to express the probability contract,
+and express the behavior of the domain model purely in terms
+of the contract.
+
+So let's try to do that.
