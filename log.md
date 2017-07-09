@@ -172,3 +172,8 @@ type, and let it do its job.
 
 Since combine(Probability, Probability) is now redundant, we can get rid
 of it as easily as we introduced it.
+
+## REFACTOR
+
+We can play the same game with the return value; extracting the property
+to a separate method.

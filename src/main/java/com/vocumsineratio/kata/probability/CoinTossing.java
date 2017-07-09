@@ -33,6 +33,10 @@ public class CoinTossing {
 
         Probability bothCoinsLandHeads = firstTossLandsHeads.combinedWith(secondTossLandsHeads);
 
+        return toDouble(bothCoinsLandHeads);
+    }
+
+    private static double toDouble(Probability bothCoinsLandHeads) {
         return bothCoinsLandHeads.value;
     }
 
