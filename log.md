@@ -182,3 +182,19 @@ to a separate method.
 
 Once again, we can move the method so that it is closer to the underlying
 data.
+
+## REFACTOR: changing the data type.
+
+In part two of the probability kata, Greg challenges us to modify the
+way we store the probability state.  The current design makes that really
+straight forward - the decision on how to represent the probability in
+memory isolated within a single module, so we can change that piece by
+itself, and the tests still pass.
+
+This owes a lot to the fact that I've been stingy about which decisions
+are part of the "public API"; the would not have worked if the API
+included direct access to the member variable itself.  Introducing
+Probabilty.toDouble() is a key step in keeping everything clean.
+
+toDouble() makes explicit the distinction between communicating the
+state and representing the state.

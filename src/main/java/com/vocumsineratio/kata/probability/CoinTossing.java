@@ -10,14 +10,23 @@ package com.vocumsineratio.kata.probability;
  */
 public class CoinTossing {
     static class Probability {
-        final double value;
+        // This represents a specific _decision_ about how we happen to represent probabilities
+        // in memory.  By encapsulating it within its own module (the Probability class), we
+        // leave ourselves free to change that decision without impacting the rest of the
+        // program.
+        //
+        // See https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf
+        //
+        // So if we have done this right, we should be able to isolate the change introduced
+        // in part 2 of the kata in this one module.
+        final float value;
 
         Probability(double value) {
-            this.value = value;
+            this.value = (float) value;
         }
 
         double toDouble() {
-            return this.value;
+            return (double)this.value;
         }
 
         Probability combinedWith(Probability that) {
