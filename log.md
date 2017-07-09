@@ -427,3 +427,7 @@ Then we can make the spelling a bit more sensible.
 We've reached a point where, within each module, we can use the appropriate
 language without confusion.
 
+## REFACTOR
+
+We can, of course, extract the classes, which makes it a bit easier to
+see the separation in the scopes.
