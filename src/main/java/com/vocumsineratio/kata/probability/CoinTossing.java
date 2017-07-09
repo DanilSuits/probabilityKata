@@ -52,20 +52,26 @@ public class CoinTossing {
 
     static class DomainModel {
         static Probability bothTossesLandHeads(Coin coin) {
-            return bothTossesLandHeads(coin.singleTossLandsHeads);
+            return bothTossesLandHeads(coin, coin);
         }
 
-        // A hint that this logic can go in the domain model: it doesn't have
-        // any direct interaction with state.  This is just a protocol that
-        // interacts with the probability interface.
-        static Probability bothTossesLandHeads(Probability singleTossLandsHeads) {
+        static Probability bothTossesLandHeads(Coin firstCoin, Coin secondCoin) {
+            // Boy, this sure looks like a violation of the law of Demeter.  I'm
+            // not at all worried about it, because once again we're interacting
+            // only with the API, and these are just queries that leave the
+            // underlying state unchanged.
+            Probability firstTossLandsHeads = firstCoin.singleTossLandsHeads;
+            Probability secondTossLandsHeads = secondCoin.singleTossLandsHeads;
+
+            return bothEventsHappen(firstTossLandsHeads, secondTossLandsHeads);
+
+        }
+
+        static Probability bothEventsHappen(Probability firstEvent, Probability secondEvent) {
             // We're making a statement about something happening twice, therefore
             // two events.  It happens that the two events share the same distribution
             // of outcomes, so they are anchored to the same universal probability.
-            Probability firstTossLandsHeads = singleTossLandsHeads;
-            Probability secondTossLandsHeads = singleTossLandsHeads;
-
-            return firstTossLandsHeads.combinedWith(secondTossLandsHeads);
+            return firstEvent.combinedWith(secondEvent);
         }
     }
 

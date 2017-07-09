@@ -243,3 +243,9 @@ make explicit the fact that I'm talking about a _fair_ coin.
 
 Disclaimer: I had no idea that was coming.  If I had, I probably would
 have contrived to introduce the idea earlier.
+
+## REFACTOR
+
+Introducing the Coin into the domain model suggests a bunch of
+spelling changes, so I run with those.  It's beginning to feel
+less like a toy problem.
