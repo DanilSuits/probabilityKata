@@ -419,3 +419,11 @@ So as a first step, we create a scope.
 Then we move the "contracts" into the shared scope; this of course touches
 everything that depends on those interfaces.  Even so, this is a trivial
 trivial refactoring that can be managed by the IDE
+
+## REFACTOR
+
+Then we can make the spelling a bit more sensible.
+
+We've reached a point where, within each module, we can use the appropriate
+language without confusion.
+
