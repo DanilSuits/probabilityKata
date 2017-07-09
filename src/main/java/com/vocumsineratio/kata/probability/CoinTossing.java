@@ -9,7 +9,12 @@ package com.vocumsineratio.kata.probability;
  * @author Danil Suits (danil@vast.com)
  */
 public class CoinTossing {
-    static class Probability {
+    // TODO: wow, what an awful name.
+    interface ProbabilityContract {
+
+    }
+
+    static class Probability implements ProbabilityContract {
         // This represents a specific _decision_ about how we happen to represent probabilities
         // in memory.  By encapsulating it within its own module (the Probability class), we
         // leave ourselves free to change that decision without impacting the rest of the

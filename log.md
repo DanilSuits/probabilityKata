@@ -297,3 +297,8 @@ and express the behavior of the domain model purely in terms
 of the contract.
 
 So let's try to do that.
+
+## REFACTOR
+
+We introduce an empty interface to express the "ProbabilityContract",
+and mark the Probability as satisfying this interface.
