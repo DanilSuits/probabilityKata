@@ -25,6 +25,10 @@ public class CoinTossing {
             this.value = (float) value;
         }
 
+        Probability(float value) {
+            this.value = value;
+        }
+
         double toDouble() {
             return (double)this.value;
         }

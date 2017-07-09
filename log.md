@@ -198,3 +198,14 @@ Probabilty.toDouble() is a key step in keeping everything clean.
 
 toDouble() makes explicit the distinction between communicating the
 state and representing the state.
+
+## REFACTOR
+
+I happened to notice a minor inefficiency in Probability.combinedWith()
+which happens to be using the public API to instantiate the result.  That's
+not right; the point of being able to switch to floats from doubles is
+to preserve efficiency.
+
+So we introduce a new constructor, to handle float to float more correctly.
+A quick check in the IDE shows me that the correct constructor is being
+invoked.
