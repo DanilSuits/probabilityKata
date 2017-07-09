@@ -326,3 +326,14 @@ solution without showing the motivation.
 
 Outside of this exercise, I would not normally include a commit that
 breaks the build.
+
+## GREEN: the corrected fix 
+
+The well known pattern is called 
+[the curiously recurring template pattern](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern)
+
+We define the interface in terms of a generic parameter that is
+constrained to be of the same type as the interface, and then
+let the concrete implementation provide itself as the specialization
+that satisfies the interface.
+

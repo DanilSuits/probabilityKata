@@ -10,11 +10,11 @@ package com.vocumsineratio.kata.probability;
  */
 public class CoinTossing {
     // TODO: wow, what an awful name.
-    interface ProbabilityContract {
-        ProbabilityContract combinedWith(ProbabilityContract that);
+    interface ProbabilityContract<P extends ProbabilityContract<P>> {
+        P combinedWith(P that);
     }
 
-    static class Probability implements ProbabilityContract {
+    static class Probability implements ProbabilityContract<Probability> {
         // This represents a specific _decision_ about how we happen to represent probabilities
         // in memory.  By encapsulating it within its own module (the Probability class), we
         // leave ourselves free to change that decision without impacting the rest of the
