@@ -42,21 +42,39 @@ public class CoinTossing {
 
     }
 
-    static class DomainModel {
+    static class Coin {
+        final Probability singleTossLandsHeads;
 
+        Coin(Probability singleTossLandsHeads) {
+            this.singleTossLandsHeads = singleTossLandsHeads;
+        }
+    }
+
+    static class DomainModel {
+        static Probability bothTossesLandHeads(Coin coin) {
+            return bothTossesLandHeads(coin.singleTossLandsHeads);
+        }
+
+        // A hint that this logic can go in the domain model: it doesn't have
+        // any direct interaction with state.  This is just a protocol that
+        // interacts with the probability interface.
+        static Probability bothTossesLandHeads(Probability singleTossLandsHeads) {
+            // We're making a statement about something happening twice, therefore
+            // two events.  It happens that the two events share the same distribution
+            // of outcomes, so they are anchored to the same universal probability.
+            Probability firstTossLandsHeads = singleTossLandsHeads;
+            Probability secondTossLandsHeads = singleTossLandsHeads;
+
+            return firstTossLandsHeads.combinedWith(secondTossLandsHeads);
+        }
     }
 
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
         Probability singleTossLandsHeads = new Probability(0.5d);
+        Coin fairCoin = new Coin(singleTossLandsHeads);
 
-        // We're making a statement about something happening twice, therefore
-        // two events.  It happens that the two events share the same distribution
-        // of outcomes, so they are anchored to the same universal probability.
-        Probability firstTossLandsHeads = singleTossLandsHeads;
-        Probability secondTossLandsHeads = singleTossLandsHeads;
-
-        Probability bothCoinsLandHeads = firstTossLandsHeads.combinedWith(secondTossLandsHeads);
+        Probability bothCoinsLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 
         return toDouble(bothCoinsLandHeads);
     }

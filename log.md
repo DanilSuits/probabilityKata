@@ -224,3 +224,22 @@ going to try to surface it.
 This is all still happening behind the facade; until we make an
 explicit decision to lift these concepts into the API, they remain
 mere implementation details.
+
+## REFACTOR
+
+Extracting the domain logic into the domain model is a straight forward
+exercise; basically we just grab everything that doesn't need to know
+about state, and move it together.
+
+It still looks a little bit clumsy, because we're working in a toy
+problem.  I think it would be easier to see where the boundaries if
+there were multiple types of things involved.
+
+## REFACTOR
+
+Actually, lets run with that.  I keep using the word "coin", so it
+really ought to show up in code somewhere.  That also helps me to
+make explicit the fact that I'm talking about a _fair_ coin.
+
+Disclaimer: I had no idea that was coming.  If I had, I probably would
+have contrived to introduce the idea earlier.
