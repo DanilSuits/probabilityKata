@@ -49,6 +49,14 @@ public class CoinTossing {
 
     static class DataModel {
 
+        static Coin createFairCoin() {
+            Probability singleTossLandsHeads = new Probability(0.5d);
+            return new Coin(singleTossLandsHeads);
+        }
+
+        static double toDouble(Probability bothCoinsLandHeads) {
+            return bothCoinsLandHeads.toDouble();
+        }
     }
 
     static class DomainModel {
@@ -75,20 +83,11 @@ public class CoinTossing {
 
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
-        Coin fairCoin = createFairCoin();
+        Coin fairCoin = DataModel.createFairCoin();
 
         Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 
-        return toDouble(bothTossesLandHeads);
-    }
-
-    private static Coin createFairCoin() {
-        Probability singleTossLandsHeads = new Probability(0.5d);
-        return new Coin(singleTossLandsHeads);
-    }
-
-    private static double toDouble(Probability bothCoinsLandHeads) {
-        return bothCoinsLandHeads.toDouble();
+        return DataModel.toDouble(bothTossesLandHeads);
     }
 
 }

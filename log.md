@@ -262,3 +262,22 @@ model of everything from a single use case.
 ## REFACTOR
 
 Applying extract method to create an instance of a fair coin.
+
+## REFACTOR
+
+Move method takes the functions that understand the in memory
+data representation, and moves them into the data model.
+
+If you look carefully, you'll see that the data model, as is
+actually has two responsibilities; it owns the problem of
+creating a representation of coin to be consumed by the domain
+model, and it is also familiar with the data representations
+that get passed across the boundary to the test.
+
+This manifests in the complexity of the Probability data model,
+where we seem to know about both floats and doubles.
+
+I'm going to leave that complexity, as it is an orthoganal
+concern to both the probability kata (which only cares that
+those two decisions can be changed independently), and to
+my current goal.
