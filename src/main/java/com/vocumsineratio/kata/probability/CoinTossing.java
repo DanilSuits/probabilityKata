@@ -38,6 +38,14 @@ public class CoinTossing {
         }
     }
 
+    static class DataModel {
+
+    }
+
+    static class DomainModel {
+
+    }
+
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
         Probability singleTossLandsHeads = new Probability(0.5d);

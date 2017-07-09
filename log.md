@@ -213,3 +213,14 @@ invoked.
 ## REFACTOR
 
 And then we implement the original constructor in terms of the new one.
+
+## REFACTOR
+
+At this point,  I want to start making the distinction between the
+data model and the domain model a bit more explict; there's some
+coupling between the two that isn't yet quite obvious, and so I'm
+going to try to surface it.
+
+This is all still happening behind the facade; until we make an
+explicit decision to lift these concepts into the API, they remain
+mere implementation details.
