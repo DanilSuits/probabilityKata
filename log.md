@@ -395,3 +395,9 @@ model does not.
 Next time through this exercise, I'll probably moving the classes into
 distinct compilation units earlier; that would make it easier to distinguish
 the impact of a change on each implementation.
+
+## REFACTOR
+
+Since _this_ data model always uses its own implementation of Probability
+when creating a Coin, we don't need the generic type in the data model.
+
