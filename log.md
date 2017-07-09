@@ -302,3 +302,11 @@ So let's try to do that.
 
 We introduce an empty interface to express the "ProbabilityContract",
 and mark the Probability as satisfying this interface.
+
+## REFACTOR
+
+We move combinedWith into the contract.
+
+Java insists that, because combinedWith is now defined by the interface,
+the visibility rules changed.  So we have to make small change to
+accomodate that.

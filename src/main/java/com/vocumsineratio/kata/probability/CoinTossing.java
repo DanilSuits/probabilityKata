@@ -11,7 +11,7 @@ package com.vocumsineratio.kata.probability;
 public class CoinTossing {
     // TODO: wow, what an awful name.
     interface ProbabilityContract {
-
+        Probability combinedWith(Probability that);
     }
 
     static class Probability implements ProbabilityContract {
@@ -38,7 +38,7 @@ public class CoinTossing {
             return (double)this.value;
         }
 
-        Probability combinedWith(Probability that) {
+        public Probability combinedWith(Probability that) {
             return new Probability(this.value * that.value);
         }
     }
