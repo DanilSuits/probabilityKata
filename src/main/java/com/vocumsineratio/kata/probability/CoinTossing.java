@@ -48,18 +48,6 @@ public class CoinTossing {
         }
     }
 
-    static class Coin<P extends ProbabilityContract<P>> implements CoinContract<P> {
-        final P singleTossLandsHeads;
-
-        Coin(P singleTossLandsHeads) {
-            this.singleTossLandsHeads = singleTossLandsHeads;
-        }
-
-        public P heads() {
-            return singleTossLandsHeads;
-        }
-    }
-
 
     static class DataModel {
 
@@ -70,6 +58,18 @@ public class CoinTossing {
 
         static double toDouble(Probability bothCoinsLandHeads) {
             return bothCoinsLandHeads.toDouble();
+        }
+
+        static class Coin<P extends ProbabilityContract<P>> implements CoinContract<P> {
+            final P singleTossLandsHeads;
+
+            Coin(P singleTossLandsHeads) {
+                this.singleTossLandsHeads = singleTossLandsHeads;
+            }
+
+            public P heads() {
+                return singleTossLandsHeads;
+            }
         }
     }
 
@@ -103,7 +103,7 @@ public class CoinTossing {
 
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
-        Coin<Probability> fairCoin = DataModel.createFairCoin();
+        DataModel.Coin<Probability> fairCoin = DataModel.createFairCoin();
 
         Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 

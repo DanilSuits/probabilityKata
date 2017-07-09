@@ -373,3 +373,15 @@ names suck; that's fine for now.
 Now the domain model only depends on the interface.  The method signatures
 are getting uglier to work with, but the actual code within the methods
 still uses spellings taken from the domain; so that much is OK.
+
+## REFACTOR
+
+We can demonstrate that the domain model is property decoupled by
+moving the coin implementation into the data model; the domain model
+hasn't changed, but the code still works.
+
+CoinTossing::bothCoinsLandHeads _did_ change.  CoinTossing is currently
+playing the role of the composition root; the composition root is always
+going to be tightly coupled to specific modules.  Now, that could be
+separated from the orchestration of the data model and the domain model
+in this use case, with more interfaces and so on.
