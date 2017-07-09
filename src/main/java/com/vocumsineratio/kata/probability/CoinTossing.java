@@ -22,7 +22,7 @@ public class CoinTossing {
         final float value;
 
         Probability(double value) {
-            this.value = (float) value;
+            this((float) value);
         }
 
         Probability(float value) {

@@ -209,3 +209,7 @@ to preserve efficiency.
 So we introduce a new constructor, to handle float to float more correctly.
 A quick check in the IDE shows me that the correct constructor is being
 invoked.
+
+## REFACTOR
+
+And then we implement the original constructor in terms of the new one.
