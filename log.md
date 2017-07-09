@@ -249,3 +249,12 @@ have contrived to introduce the idea earlier.
 Introducing the Coin into the domain model suggests a bunch of
 spelling changes, so I run with those.  It's beginning to feel
 less like a toy problem.
+
+## REFACTOR
+
+It seems there's a lot of room for cleanup of the language within
+the model.  I seem to be conflating coin and toss; probability and
+event.  I suspect deeper teasing might expose a distribution as
+well.  The rabbit hole goes deeper; the cutoff in this exercise
+is arbitrary -- yagni, perhaps.  We aren't trying to discover a
+model of everything from a single use case.

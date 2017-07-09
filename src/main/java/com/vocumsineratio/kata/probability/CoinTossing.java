@@ -38,16 +38,17 @@ public class CoinTossing {
         }
     }
 
-    static class DataModel {
-
-    }
-
     static class Coin {
         final Probability singleTossLandsHeads;
 
         Coin(Probability singleTossLandsHeads) {
             this.singleTossLandsHeads = singleTossLandsHeads;
         }
+    }
+
+
+    static class DataModel {
+
     }
 
     static class DomainModel {
@@ -68,9 +69,6 @@ public class CoinTossing {
         }
 
         static Probability bothEventsHappen(Probability firstEvent, Probability secondEvent) {
-            // We're making a statement about something happening twice, therefore
-            // two events.  It happens that the two events share the same distribution
-            // of outcomes, so they are anchored to the same universal probability.
             return firstEvent.combinedWith(secondEvent);
         }
     }
@@ -80,9 +78,9 @@ public class CoinTossing {
         Probability singleTossLandsHeads = new Probability(0.5d);
         Coin fairCoin = new Coin(singleTossLandsHeads);
 
-        Probability bothCoinsLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
+        Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 
-        return toDouble(bothCoinsLandHeads);
+        return toDouble(bothTossesLandHeads);
     }
 
     private static double toDouble(Probability bothCoinsLandHeads) {
