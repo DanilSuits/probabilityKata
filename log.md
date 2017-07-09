@@ -431,3 +431,11 @@ language without confusion.
 
 We can, of course, extract the classes, which makes it a bit easier to
 see the separation in the scopes.
+
+## REFACTOR
+
+Java's scoping rules allow us to use a more natural spelling, even
+within the API.  So we always get a spelling that looks like
+
+`<Probablity extends API.Probability<Probability>`
+

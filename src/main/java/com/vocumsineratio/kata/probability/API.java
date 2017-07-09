@@ -10,11 +10,11 @@ package com.vocumsineratio.kata.probability;
  */
 class API {
 
-    interface Probability<P extends Probability<P>> {
-        P combinedWith(P that);
+    interface Probability<Probability extends API.Probability> {
+        Probability combinedWith(Probability that);
     }
 
-    interface Coin<P extends Probability<P>> {
-        P heads();
+    interface Coin<Probability extends API.Probability> {
+        Probability heads();
     }
 }
