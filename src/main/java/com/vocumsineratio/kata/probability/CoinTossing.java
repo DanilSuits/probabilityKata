@@ -16,6 +16,10 @@ public class CoinTossing {
             this.value = value;
         }
 
+        double toDouble() {
+            return this.value;
+        }
+
         Probability combinedWith(Probability that) {
             return new Probability(this.value * that.value);
         }
@@ -37,7 +41,7 @@ public class CoinTossing {
     }
 
     private static double toDouble(Probability bothCoinsLandHeads) {
-        return bothCoinsLandHeads.value;
+        return bothCoinsLandHeads.toDouble();
     }
 
 }

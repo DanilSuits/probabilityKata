@@ -177,3 +177,8 @@ of it as easily as we introduced it.
 
 We can play the same game with the return value; extracting the property
 to a separate method.
+
+## REFACTOR
+
+Once again, we can move the method so that it is closer to the underlying
+data.
