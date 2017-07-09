@@ -11,15 +11,15 @@ package com.vocumsineratio.kata.probability;
 public class CoinTossing {
     static class API {
 
-    }
-    // TODO: wow, what an awful name.
-    interface ProbabilityContract<P extends ProbabilityContract<P>> {
-        P combinedWith(P that);
-    }
+        // TODO: wow, what an awful name.
+        interface ProbabilityContract<P extends ProbabilityContract<P>> {
+            P combinedWith(P that);
+        }
 
-    // TODO: also, this one.
-    interface CoinContract<P extends ProbabilityContract<P>> {
-        P heads();
+        // TODO: also, this one.
+        interface CoinContract<P extends ProbabilityContract<P>> {
+            P heads();
+        }
     }
 
 
@@ -34,7 +34,7 @@ public class CoinTossing {
             return bothCoinsLandHeads.toDouble();
         }
 
-        static class Coin implements CoinContract<Probability> {
+        static class Coin implements API.CoinContract<Probability> {
             final Probability singleTossLandsHeads;
 
             Coin(Probability singleTossLandsHeads) {
@@ -46,7 +46,7 @@ public class CoinTossing {
             }
         }
 
-        static class Probability implements ProbabilityContract<Probability> {
+        static class Probability implements API.ProbabilityContract<Probability> {
             // This represents a specific _decision_ about how we happen to represent probabilities
             // in memory.  By encapsulating it within its own module (the Probability class), we
             // leave ourselves free to change that decision without impacting the rest of the
@@ -77,15 +77,15 @@ public class CoinTossing {
     }
 
     static class DomainModel {
-        static <Probability extends ProbabilityContract<Probability>
-                , Coin extends CoinContract<Probability>
+        static <Probability extends API.ProbabilityContract<Probability>
+                , Coin extends API.CoinContract<Probability>
                 >
         Probability bothTossesLandHeads(Coin coin) {
             return bothTossesLandHeads(coin, coin);
         }
 
-        static <Probability extends ProbabilityContract<Probability>
-                , Coin extends CoinContract<Probability>
+        static <Probability extends API.ProbabilityContract<Probability>
+                , Coin extends API.CoinContract<Probability>
                 >
         Probability bothTossesLandHeads(Coin firstCoin, Coin secondCoin) {
             // Boy, this sure looks like a violation of the law of Demeter.  I'm
@@ -99,7 +99,7 @@ public class CoinTossing {
 
         }
 
-        static <Probability extends ProbabilityContract<Probability>> Probability bothEventsHappen(Probability firstEvent, Probability secondEvent) {
+        static <Probability extends API.ProbabilityContract<Probability>> Probability bothEventsHappen(Probability firstEvent, Probability secondEvent) {
             return firstEvent.combinedWith(secondEvent);
         }
     }
