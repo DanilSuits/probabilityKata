@@ -43,10 +43,10 @@ public class CoinTossing {
         }
     }
 
-    static class Coin {
-        final Probability singleTossLandsHeads;
+    static class Coin<P extends ProbabilityContract<P>> {
+        final P singleTossLandsHeads;
 
-        Coin(Probability singleTossLandsHeads) {
+        Coin(P singleTossLandsHeads) {
             this.singleTossLandsHeads = singleTossLandsHeads;
         }
     }
@@ -54,9 +54,9 @@ public class CoinTossing {
 
     static class DataModel {
 
-        static Coin createFairCoin() {
+        static Coin<Probability> createFairCoin() {
             Probability singleTossLandsHeads = new Probability(0.5d);
-            return new Coin(singleTossLandsHeads);
+            return new Coin<>(singleTossLandsHeads);
         }
 
         static double toDouble(Probability bothCoinsLandHeads) {
@@ -65,30 +65,30 @@ public class CoinTossing {
     }
 
     static class DomainModel {
-        static Probability bothTossesLandHeads(Coin coin) {
+        static <P extends ProbabilityContract<P>> P bothTossesLandHeads(Coin<P> coin) {
             return bothTossesLandHeads(coin, coin);
         }
 
-        static Probability bothTossesLandHeads(Coin firstCoin, Coin secondCoin) {
+        static <P extends ProbabilityContract<P>> P bothTossesLandHeads(Coin<P> firstCoin, Coin<P> secondCoin) {
             // Boy, this sure looks like a violation of the law of Demeter.  I'm
             // not at all worried about it, because once again we're interacting
             // only with the API, and these are just queries that leave the
             // underlying state unchanged.
-            Probability firstTossLandsHeads = firstCoin.singleTossLandsHeads;
-            Probability secondTossLandsHeads = secondCoin.singleTossLandsHeads;
+            P firstTossLandsHeads = firstCoin.singleTossLandsHeads;
+            P secondTossLandsHeads = secondCoin.singleTossLandsHeads;
 
             return bothEventsHappen(firstTossLandsHeads, secondTossLandsHeads);
 
         }
 
-        static Probability bothEventsHappen(Probability firstEvent, Probability secondEvent) {
+        static <P extends ProbabilityContract<P>> P bothEventsHappen(P firstEvent, P secondEvent) {
             return firstEvent.combinedWith(secondEvent);
         }
     }
 
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
-        Coin fairCoin = DataModel.createFairCoin();
+        Coin<Probability> fairCoin = DataModel.createFairCoin();
 
         Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 

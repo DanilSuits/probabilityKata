@@ -337,3 +337,12 @@ constrained to be of the same type as the interface, and then
 let the concrete implementation provide itself as the specialization
 that satisfies the interface.
 
+## REFACTOR
+
+Now we can take the same spelling, and use it throughout the implementation
+to isolate the consumers of the contract from the provider of the
+implementation.
+
+This is not without a cost, however -- the domain code no longer has the
+right language; "P" is not taken from the domain language.  So at this
+point we've regressed.
