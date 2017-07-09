@@ -310,3 +310,19 @@ We move combinedWith into the contract.
 Java insists that, because combinedWith is now defined by the interface,
 the visibility rules changed.  So we have to make small change to
 accomodate that.
+
+## RED: breaking the circular dependency
+
+The previous implementation of the interface wasn't satisfactory, because
+the interface had a dependency on its implementation.  What we want is that
+Probability depends on the contract, but not the other way around.
+
+We can define the contract in terms of itself, but the strong type checker
+objects.  
+
+There's a well known pattern for this in Java, but I wanted to be
+explicitly call out the problem, rather than moving directly to the
+solution without showing the motivation.
+
+Outside of this exercise, I would not normally include a commit that
+breaks the build.
