@@ -49,6 +49,10 @@ public class CoinTossing {
         Coin(P singleTossLandsHeads) {
             this.singleTossLandsHeads = singleTossLandsHeads;
         }
+
+        P heads() {
+            return singleTossLandsHeads;
+        }
     }
 
 
@@ -74,8 +78,8 @@ public class CoinTossing {
             // not at all worried about it, because once again we're interacting
             // only with the API, and these are just queries that leave the
             // underlying state unchanged.
-            Probability firstTossLandsHeads = firstCoin.singleTossLandsHeads;
-            Probability secondTossLandsHeads = secondCoin.singleTossLandsHeads;
+            Probability firstTossLandsHeads = firstCoin.heads();
+            Probability secondTossLandsHeads = secondCoin.heads();
 
             return bothEventsHappen(firstTossLandsHeads, secondTossLandsHeads);
 

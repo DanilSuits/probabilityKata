@@ -354,3 +354,11 @@ use any spelling we like there, so long as we are internally consistent.
 That means that we can use the spelling Probability within this scope.
 Thus, we can restore the domain language to the method, without impacting
 correctness.
+
+## REFACTOR
+
+Setting up the same sort of decoupling for Coin as well; directly accessing
+the member variable causes problems, because we're coupled to the
+implementation, rather than to the interface.
+
+So we introduce a method to constrain the property access.
