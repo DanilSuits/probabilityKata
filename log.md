@@ -385,3 +385,13 @@ playing the role of the composition root; the composition root is always
 going to be tightly coupled to specific modules.  Now, that could be
 separated from the orchestration of the data model and the domain model
 in this use case, with more interfaces and so on.
+
+## REFACTOR
+
+Likewise, we can move the probability implementation into the data model;
+the composition root code needs to be changed to match, but the domain
+model does not.
+
+Next time through this exercise, I'll probably moving the classes into
+distinct compilation units earlier; that would make it easier to distinguish
+the impact of a change on each implementation.

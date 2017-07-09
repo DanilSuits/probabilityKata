@@ -19,35 +19,6 @@ public class CoinTossing {
         P heads();
     }
 
-    static class Probability implements ProbabilityContract<Probability> {
-        // This represents a specific _decision_ about how we happen to represent probabilities
-        // in memory.  By encapsulating it within its own module (the Probability class), we
-        // leave ourselves free to change that decision without impacting the rest of the
-        // program.
-        //
-        // See https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf
-        //
-        // So if we have done this right, we should be able to isolate the change introduced
-        // in part 2 of the kata in this one module.
-        final float value;
-
-        Probability(double value) {
-            this((float) value);
-        }
-
-        Probability(float value) {
-            this.value = value;
-        }
-
-        double toDouble() {
-            return (double)this.value;
-        }
-
-        public Probability combinedWith(Probability that) {
-            return new Probability(this.value * that.value);
-        }
-    }
-
 
     static class DataModel {
 
@@ -69,6 +40,35 @@ public class CoinTossing {
 
             public P heads() {
                 return singleTossLandsHeads;
+            }
+        }
+
+        static class Probability implements ProbabilityContract<Probability> {
+            // This represents a specific _decision_ about how we happen to represent probabilities
+            // in memory.  By encapsulating it within its own module (the Probability class), we
+            // leave ourselves free to change that decision without impacting the rest of the
+            // program.
+            //
+            // See https://www.cs.umd.edu/class/spring2003/cmsc838p/Design/criteria.pdf
+            //
+            // So if we have done this right, we should be able to isolate the change introduced
+            // in part 2 of the kata in this one module.
+            final float value;
+
+            Probability(double value) {
+                this((float) value);
+            }
+
+            Probability(float value) {
+                this.value = value;
+            }
+
+            double toDouble() {
+                return (double)this.value;
+            }
+
+            public Probability combinedWith(Probability that) {
+                return new Probability(this.value * that.value);
             }
         }
     }
@@ -103,9 +103,9 @@ public class CoinTossing {
 
     public static double bothCoinsLandHeads() {
         // This is a property specific to coins
-        DataModel.Coin<Probability> fairCoin = DataModel.createFairCoin();
+        DataModel.Coin<DataModel.Probability> fairCoin = DataModel.createFairCoin();
 
-        Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
+        DataModel.Probability bothTossesLandHeads = DomainModel.bothTossesLandHeads(fairCoin);
 
         return DataModel.toDouble(bothTossesLandHeads);
     }
